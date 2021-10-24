@@ -67,4 +67,9 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Text: " + collision.gameObject.name);
+    }
+
 }
