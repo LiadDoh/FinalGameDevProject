@@ -5,7 +5,7 @@ using UnityEngine;
 public class DoorMotion : MonoBehaviour
 {
     private Animator animator;
-    private AudioSource doorOpening;
+   // private AudioSource doorOpening;
     private float time = 0;
     private bool doorIsOpen = true;
 
@@ -13,7 +13,7 @@ public class DoorMotion : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        doorOpening = GetComponent<AudioSource>();
+       // doorOpening = GetComponent<AudioSource>();
     }
 
     private IEnumerator OnTriggerEnter(Collider other)
@@ -47,7 +47,7 @@ public class DoorMotion : MonoBehaviour
     private void setDoor(bool isOpen)
     {
         animator.SetBool("Open", isOpen);
-        doorOpening.PlayDelayed(0.5f);
+      //  doorOpening.PlayDelayed(0.5f);
         time = Time.time;
         doorIsOpen = isOpen;
     }
