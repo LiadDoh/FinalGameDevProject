@@ -4,26 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PickCoin : MonoBehaviour
 {
-    public AudioSource pickSound;
-    public Text coinsTxt;
-    public static int numCoins;
-    // Start is called before the first frame update
-    void Start()
-    {
-        numCoins = 0;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    public GameObject player;
+    public GameObject ally;
 
     private void OnTriggerEnter(Collider other)
     {
-        numCoins++;
         gameObject.SetActive(false);
-        pickSound.Play();
-        coinsTxt.text = "Coins : " + numCoins;
+        GameObject childObject = findChildFromParent(player.name,"Main Camera", "Rifle");
+        GameObject childObject1 = findChildFromParent(ally.name, "", "Rifle (1)");
+        childObject.SetActive(true);
+        childObject1.SetActive(true);
+    }
+
+    GameObject findChildFromParent(string parentName, string subChildNameToFind, string childNameToFind)
+    {
+
+        string childLocation;
+        if (!subChildNameToFind.Equals(""))
+            parentName += "/" + subChildNameToFind;
+        childLocation = "/" + parentName + "/" + childNameToFind;
+        Debug.Log("Location" + childLocation);
+        GameObject childObject = GameObject.Find(childLocation);
+        return childObject;
     }
 }

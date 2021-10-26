@@ -7,13 +7,13 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
     public float speed;
-    private float walkSpeed = 7f;
-    private float crouchSpeed = 4f;
-    private float runSpeed = 12f;
+    private float walkSpeed = 5f;
+    private float crouchSpeed = 3f;
+    private float runSpeed = 8f;
     public float gravity = -9.81f;
     public Transform groundCheck;
     public float groundDistance = 0.4f;
-    public float jumpHeight = 3f;
+    public float jumpHeight = 1f;
     Camera cam;
 
     public LayerMask groundMask;
