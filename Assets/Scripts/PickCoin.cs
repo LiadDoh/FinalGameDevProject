@@ -10,21 +10,9 @@ public class PickCoin : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         gameObject.SetActive(false);
-        GameObject childObject = findChildFromParent(player.name,"Main Camera", "Rifle");
-        GameObject childObject1 = findChildFromParent(ally.name, "", "Rifle (1)");
-        childObject.SetActive(true);
-        childObject1.SetActive(true);
-    }
-
-    GameObject findChildFromParent(string parentName, string subChildNameToFind, string childNameToFind)
-    {
-
-        string childLocation;
-        if (!subChildNameToFind.Equals(""))
-            parentName += "/" + subChildNameToFind;
-        childLocation = "/" + parentName + "/" + childNameToFind;
-        Debug.Log("Location" + childLocation);
-        GameObject childObject = GameObject.Find(childLocation);
-        return childObject;
+        GameObject child1 = player.transform.GetChild(0).transform.GetChild(0).gameObject;
+        GameObject child2 = ally.transform.GetChild(1).gameObject;
+        child1.SetActive(true);
+        child2.SetActive(true);
     }
 }
