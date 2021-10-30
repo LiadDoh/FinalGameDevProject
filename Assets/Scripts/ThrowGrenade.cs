@@ -9,7 +9,10 @@ public class ThrowGrenade : MonoBehaviour
     public GameObject explosion;
     private GameObject tempGrenade;
 
-    public float delay = 3;
+    public float delay = 3f;
+    public float radius = 200f;
+    public float explosionForce = 500000f;
+    public float damage = 100f;
 
     Boolean canExpload;
 
@@ -45,7 +48,25 @@ public class ThrowGrenade : MonoBehaviour
         //tempGrenade.SetActive(false);
         explosion.transform.position = tempGrenade.transform.position;
         Destroy(tempGrenade);
-        
+
+        Collider[] colliders = Physics.OverlapSphere(tempGrenade.transform.position, radius);
+
+        foreach (Collider nearbyObject in colliders){
+            Debug.Log(nearbyObject.name);
+            Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddExplosionForce(explosionForce, tempGrenade.transform.position, radius);
+                Target target = nearbyObject.transform.GetComponent<Target>();
+                if (target != null)
+                {
+                    Debug.Log("Object : " + nearbyObject.name + " takes " + damage + " damage!");
+                    target.TakeDamage(damage);
+                }
+            }
+
+        }
+
         explosion.SetActive(true);
         yield return new WaitForSeconds(1);
         explosion.SetActive(false);
