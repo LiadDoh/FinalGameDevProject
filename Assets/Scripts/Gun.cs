@@ -7,7 +7,7 @@ public class Gun : MonoBehaviour
     public float range = 100f;
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
-    public float impactForce = 30f;
+    public float impactForce = 0.1f;
     public float fireRate = 15f;
 
     private float nextTimeToFire = 0f;
