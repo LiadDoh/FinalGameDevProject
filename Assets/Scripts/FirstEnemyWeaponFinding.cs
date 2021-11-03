@@ -21,7 +21,7 @@ public class FirstEnemyWeaponFinding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Follow the player
+        //Follow the game object
         agent.destination = transformToFollow.position;
         if (!agent.isStopped)
         {
@@ -30,6 +30,8 @@ public class FirstEnemyWeaponFinding : MonoBehaviour
         if (Vector3.Distance(agent.destination, enemyOne.transform.position) < 0.1)
         {
             animator.SetBool("isMoving", false);
+            enemyOne.GetComponent<FirstEnemyWeaponFinding>().enabled = false;
+            enemyOne.GetComponent<FirstEnemyMotion>().enabled = true;
         }
     }
 }
