@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FirstEnemyWeaponFinding : MonoBehaviour
+public class EnemiesFollow : MonoBehaviour
 {
     //Transform that NPC has to follow
     public Transform transformToFollow;
     //NavMesh Agent variable
     NavMeshAgent agent;
-    public GameObject enemyOne;
+    public GameObject thisEnemy;
     Animator animator;
     // Start is called before the first frame update
     void Start()
@@ -27,11 +27,15 @@ public class FirstEnemyWeaponFinding : MonoBehaviour
         {
             animator.SetBool("isMoving", true);
         }
-        if (Vector3.Distance(agent.destination, enemyOne.transform.position) < 0.1)
+        if (Vector3.Distance(agent.destination, thisEnemy.transform.position) < 1)
         {
             animator.SetBool("isMoving", false);
-            enemyOne.GetComponent<FirstEnemyWeaponFinding>().enabled = false;
-            enemyOne.GetComponent<FirstEnemyMotion>().enabled = true;
+            if (thisEnemy.tag == "FirstEnemy")
+            {
+                thisEnemy.GetComponent<EnemiesFollow>().enabled = false;
+                thisEnemy.GetComponent<FirstEnemyMotion>().enabled = true;
+            }
+
         }
     }
 }
