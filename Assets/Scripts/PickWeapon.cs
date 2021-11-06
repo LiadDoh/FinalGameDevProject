@@ -16,10 +16,10 @@ public class PickWeapon : MonoBehaviour
     public GameObject rifle3;
     public GameObject rifle4;
 
-    public Text objective;
-    public Text state;
+    public PlayerUIControl playerUIControl;
 
     string temp;
+    bool wasPlayerClose = false;
     //bool hasPickedUp = false;
 
     // Start is called before the first frame update
@@ -29,7 +29,12 @@ public class PickWeapon : MonoBehaviour
 
         cam = Camera.main.transform;
 
-        temp = objective.text;
+        playerUIControl = GameObject.FindObjectOfType<PlayerUIControl>();
+
+        temp = playerUIControl.getObjectiveText();
+
+        Debug.Log("getObjectiveText = " + temp);
+
     }
 
     // Update is called once per frame
@@ -40,14 +45,16 @@ public class PickWeapon : MonoBehaviour
         distance = Vector3.Distance(transform.position, tempParent.transform.position);
         if (distance <= distanceAllowed && !rifle1.activeInHierarchy && !rifle2.activeInHierarchy)
         {
-            objective.text = "Press left click to pick up";
-        } else if (!rifle1.activeInHierarchy && !rifle2.activeInHierarchy)
+            playerUIControl.setObjectiveText("Press left click while looking at the rifle to pick it up");
+            wasPlayerClose = true;
+        } else if (!rifle1.activeInHierarchy && !rifle2.activeInHierarchy && !playerUIControl.getObjectiveText().Equals(temp) 
+            && wasPlayerClose)
         {
-            objective.text = temp;
+            playerUIControl.setObjectiveText(temp);
         } 
     }
 
-    private IEnumerator OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "FirstEnemy" || other.tag == "SecondEnemy" && !rifle3.activeInHierarchy && !rifle4.activeInHierarchy)
         {
@@ -55,10 +62,15 @@ public class PickWeapon : MonoBehaviour
             gameObject.SetActive(false);
             rifle3.SetActive(true);
             rifle4.SetActive(true);
-            state.text = "Careful now, the enemies got themselves some weapons!!";
-            yield return new WaitForSeconds(2);
-            state.text = "";
+            playerUIControl.setStateText("Careful now, the enemies got themselves some weapons!!");
             GetComponent<PickWeapon>().enabled = false;
+
+            if (!rifle1.activeInHierarchy && !rifle2.activeInHierarchy && !playerUIControl.getObjectiveText().Equals(temp))
+            {
+                playerUIControl.setObjectiveText(temp);
+            }
+
+            Destroy(gameObject);
         }
 
     }
@@ -67,11 +79,11 @@ public class PickWeapon : MonoBehaviour
     {
         if (distance <= distanceAllowed && !rifle1.activeInHierarchy && !rifle2.activeInHierarchy)
         {
-            gameObject.SetActive(false);
             rifle1.SetActive(true);
             rifle2.SetActive(true);
-            objective.text = "You found a weapon!\nNow get to killing the enemy team!";
+            playerUIControl.setObjectiveText("You found a weapon!\nNow get to killing the enemy team!");
             GetComponent<PickWeapon>().enabled = false;
+            Destroy(gameObject);
         }
     }
 
