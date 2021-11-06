@@ -20,7 +20,7 @@ public class PickWeapon : MonoBehaviour
     public Text state;
 
     string temp;
-    bool hasPickedUp = false;
+    //bool hasPickedUp = false;
 
     // Start is called before the first frame update
     void Start()

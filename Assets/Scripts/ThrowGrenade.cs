@@ -46,7 +46,8 @@ public class ThrowGrenade : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         //tempGrenade.SetActive(false);
-        explosion.transform.position = tempGrenade.transform.position;
+        explosion.transform.position = new Vector3(tempGrenade.transform.position.x, tempGrenade.transform.position.y + 4,
+            tempGrenade.transform.position.z);
         Destroy(tempGrenade);
 
         Collider[] colliders = Physics.OverlapSphere(tempGrenade.transform.position, radius);
