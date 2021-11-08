@@ -5,20 +5,34 @@ using UnityEngine.AI;
 
 public class SC_NPCFollow : MonoBehaviour
 {
-    //Transform that NPC has to follow
-    public Transform transformToFollow;
-    //NavMesh Agent variable
-    NavMeshAgent agent;
-    // Start is called before the first frame update
+
+    public float walk_Speed = 0.5f;
+    public float run_Speed = 4f;
+    public NavMeshAgent navAgent;
+    private Animator animator;
+    private Transform target;
+
+
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        navAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
         //Follow the player
-        agent.destination = transformToFollow.position;
+        navAgent.speed = run_Speed;
+        navAgent.SetDestination(target.position);
+        if (navAgent.velocity.sqrMagnitude > 0)
+        {
+            animator.SetBool("isMoving", true);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
     }
 }
