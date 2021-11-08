@@ -22,6 +22,7 @@ public class PickWeapon : MonoBehaviour
 
     string temp;
     bool wasPlayerClose = false;
+    private RaycastHit hit;
     //bool hasPickedUp = false;
 
     // Start is called before the first frame update
@@ -46,10 +47,11 @@ public class PickWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Physics.Raycast(cam.position, cam.forward, out RaycastHit hit);
+        Physics.Raycast(cam.position, cam.forward, out hit);
 
-        distance = Vector3.Distance(transform.position, playerObject.transform.position);
-        if (distance <= distanceAllowed && !rifle1.activeInHierarchy && !rifle2.activeInHierarchy)
+        //distance = Vector3.Distance(transform.position, playerObject.transform.position);
+        if (hit.transform != null && hit.transform.gameObject != null && hit.distance < distanceAllowed 
+            && !rifle1.activeInHierarchy && !rifle2.activeInHierarchy)
         {
             playerUIControl.setObjectiveText("Press left click while looking at the rifle to pick it up");
             wasPlayerClose = true;
@@ -102,7 +104,8 @@ public class PickWeapon : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (distance <= distanceAllowed && !rifle1.activeInHierarchy && !rifle2.activeInHierarchy)
+        if (hit.transform != null && hit.transform.gameObject != null && hit.distance < distanceAllowed
+            && !rifle1.activeInHierarchy && !rifle2.activeInHierarchy)
         {
             rifle1.SetActive(true);
             rifle2.SetActive(true);

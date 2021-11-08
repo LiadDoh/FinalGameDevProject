@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DoorMotion : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class DoorMotion : MonoBehaviour
    // private AudioSource doorOpening;
     private float time = 0;
     private bool doorIsOpen = true;
+    NavMeshObstacle obstacle;
 
     //private Collider[] colChildren;
 
@@ -15,6 +17,7 @@ public class DoorMotion : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        obstacle = GetComponent<NavMeshObstacle>();
         //colChildren = gameObject.GetComponentsInChildren<Collider>();
         // doorOpening = GetComponent<AudioSource>();
     }
@@ -23,11 +26,11 @@ public class DoorMotion : MonoBehaviour
     {
         if (Time.time - time > 1 || time == 0)
         {
-            setDoorOpen(true);
+            setDoorMotion(true);
         } else
         {
             yield return new WaitForSeconds(1);
-            setDoorOpen(true);
+            setDoorMotion(true);
         }
         /*if(other.tag.Equals("FirstEnemy") || other.tag.Equals("SecondEnemy"))
         {
@@ -50,20 +53,24 @@ public class DoorMotion : MonoBehaviour
     {
         if (Time.time - time > 1 || time == 0)
         {
-            setDoorOpen(false);
+            setDoorMotion(false);
         }
         else
         {
             yield return new WaitForSeconds(1);
-            setDoorOpen(false);
+            setDoorMotion(false);
         }
 
     }
 
 
 
-    private void setDoorOpen(bool isOpen)
+    private void setDoorMotion(bool isOpen)
     {
+        if (obstacle != null)
+        {
+            obstacle.enabled = !isOpen;
+        }
         animator.SetBool("Open", isOpen);
       //  doorOpening.PlayDelayed(0.5f);
         time = Time.time;
