@@ -9,11 +9,14 @@ public class DoorMotion : MonoBehaviour
     private float time = 0;
     private bool doorIsOpen = true;
 
+    private Collider[] colChildren;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-       // doorOpening = GetComponent<AudioSource>();
+        colChildren = gameObject.GetComponentsInChildren<Collider>();
+        // doorOpening = GetComponent<AudioSource>();
     }
 
     private IEnumerator OnTriggerEnter(Collider other)
@@ -40,6 +43,7 @@ public class DoorMotion : MonoBehaviour
             yield return new WaitForSeconds(1);
             setDoor(false);
         }
+
     }
 
 
@@ -50,5 +54,10 @@ public class DoorMotion : MonoBehaviour
       //  doorOpening.PlayDelayed(0.5f);
         time = Time.time;
         doorIsOpen = isOpen;
+
+        foreach (Collider collider in colChildren)
+        {
+            collider.enabled = !isOpen;
+        }
     }
 }

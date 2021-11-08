@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class PickWeapon : MonoBehaviour
 {
-    private GameObject tempParent;
+    private GameObject playerObject;
+   // private GameObject firstEnemyObject;
+    //private GameObject SecondEnemyObject;
     private Transform cam;
 
     float distance;
@@ -25,7 +27,11 @@ public class PickWeapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        tempParent = GameObject.Find("remy");
+        playerObject = GameObject.Find("remy");
+
+        //firstEnemyObject = GameObject.Find("FirstEnemy");
+
+        //SecondEnemyObject = GameObject.Find("SecondEnemy");
 
         cam = Camera.main.transform;
 
@@ -42,7 +48,7 @@ public class PickWeapon : MonoBehaviour
     {
         Physics.Raycast(cam.position, cam.forward, out RaycastHit hit);
 
-        distance = Vector3.Distance(transform.position, tempParent.transform.position);
+        distance = Vector3.Distance(transform.position, playerObject.transform.position);
         if (distance <= distanceAllowed && !rifle1.activeInHierarchy && !rifle2.activeInHierarchy)
         {
             playerUIControl.setObjectiveText("Press left click while looking at the rifle to pick it up");
@@ -51,7 +57,26 @@ public class PickWeapon : MonoBehaviour
             && wasPlayerClose)
         {
             playerUIControl.setObjectiveText(temp);
-        } 
+        }
+
+      /*  if ((Vector3.Distance(transform.position, firstEnemyObject.transform.position) <= distanceAllowed
+            || Vector3.Distance(transform.position, SecondEnemyObject.transform.position) <= distanceAllowed)
+            && !rifle3.activeInHierarchy && !rifle4.activeInHierarchy)
+        {
+            Debug.Log(firstEnemyObject.tag);
+            gameObject.SetActive(false);
+            rifle3.SetActive(true);
+            rifle4.SetActive(true);
+            playerUIControl.setStateText("Careful now, the enemies got themselves some weapons!!");
+            GetComponent<PickWeapon>().enabled = false;
+
+            if (!rifle1.activeInHierarchy && !rifle2.activeInHierarchy && !playerUIControl.getObjectiveText().Equals(temp))
+            {
+                playerUIControl.setObjectiveText(temp);
+            }
+
+            Destroy(gameObject);
+        }*/
     }
 
     private void OnTriggerEnter(Collider other)
