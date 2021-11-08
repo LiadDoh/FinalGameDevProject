@@ -9,13 +9,13 @@ public class DoorMotion : MonoBehaviour
     private float time = 0;
     private bool doorIsOpen = true;
 
-    private Collider[] colChildren;
+    //private Collider[] colChildren;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        colChildren = gameObject.GetComponentsInChildren<Collider>();
+        //colChildren = gameObject.GetComponentsInChildren<Collider>();
         // doorOpening = GetComponent<AudioSource>();
     }
 
@@ -23,12 +23,26 @@ public class DoorMotion : MonoBehaviour
     {
         if (Time.time - time > 1 || time == 0)
         {
-            setDoor(true);
+            setDoorOpen(true);
         } else
         {
             yield return new WaitForSeconds(1);
-            setDoor(true);
+            setDoorOpen(true);
         }
+        /*if(other.tag.Equals("FirstEnemy") || other.tag.Equals("SecondEnemy"))
+        {
+            foreach (Collider collider in colChildren)
+            {
+                collider.enabled = false;
+            }
+            yield return new WaitForSeconds(1);
+            foreach (Collider collider in colChildren)
+            {
+                collider.enabled = true;
+            }
+            setDoorOpen(false);
+        }*/
+
 
     }
 
@@ -36,28 +50,23 @@ public class DoorMotion : MonoBehaviour
     {
         if (Time.time - time > 1 || time == 0)
         {
-            setDoor(false);
+            setDoorOpen(false);
         }
         else
         {
             yield return new WaitForSeconds(1);
-            setDoor(false);
+            setDoorOpen(false);
         }
 
     }
 
 
 
-    private void setDoor(bool isOpen)
+    private void setDoorOpen(bool isOpen)
     {
         animator.SetBool("Open", isOpen);
       //  doorOpening.PlayDelayed(0.5f);
         time = Time.time;
         doorIsOpen = isOpen;
-
-        foreach (Collider collider in colChildren)
-        {
-            collider.enabled = !isOpen;
-        }
     }
 }
