@@ -13,6 +13,7 @@ public class EnemiesFollow : MonoBehaviour
     Animator animator;
 
     private bool beganSearching = false;
+    private bool doneSearching = false;
     List<GameObject> remainingActivePositions;
     // Start is called before the first frame update
     void Start()
@@ -24,31 +25,36 @@ public class EnemiesFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transformToFollow != null)
+        if (!doneSearching)
         {
-            beganSearching = true;
-            //Follow the game object
-            agent.destination = transformToFollow.position;
-            if (!agent.isStopped)
+            if (transformToFollow != null)
             {
-                animator.SetBool("isMoving", true);
-            }
-            if (Vector3.Distance(agent.destination, thisEnemy.transform.position) <= agent.stoppingDistance)
-            {
-                animator.SetBool("isMoving", false);
-                if (thisEnemy.tag == "FirstEnemy")
+                beganSearching = true;
+                //Follow the game object
+                agent.destination = transformToFollow.position;
+                if (!agent.isStopped)
                 {
-                    thisEnemy.GetComponent<EnemiesFollow>().enabled = false;
-                    thisEnemy.GetComponent<FirstEnemyMotion>().enabled = true;
+                    animator.SetBool("isMoving", true);
                 }
+                if (Vector3.Distance(agent.destination, thisEnemy.transform.position) <= agent.stoppingDistance)
+                {
+                    animator.SetBool("isMoving", false);
+                    if (thisEnemy.tag == "FirstEnemy")
+                    {
+                        thisEnemy.GetComponent<EnemiesFollow>().enabled = false;
+                        thisEnemy.GetComponent<FirstEnemyMotion>().enabled = true;
+                    }
 
+                }
             }
-        } else if (beganSearching)
-        {
-            Debug.Log("Player has taken the enemies selected positioned weapon, switching to alternate position...");
-            beganSearching = false; // Prevents repeating
-            getClosestRiflePosition(remainingActivePositions);
+            else if (beganSearching)
+            {
+                Debug.Log("Player has taken the enemies selected positioned weapon, switching to alternate position...");
+                beganSearching = false; // Prevents repeating
+                getClosestRiflePosition(remainingActivePositions);
+            }
         }
+
     }
 
     public void getClosestRiflePosition(List<GameObject> activePositions)
@@ -72,4 +78,16 @@ public class EnemiesFollow : MonoBehaviour
 
         remainingActivePositions = activePositions;
     }
+
+    public void setTransformToFollow(Transform newTransform)
+    {
+        transformToFollow = newTransform;
+    }
+
+    public void setDoneSearching(bool boolValue)
+    {
+        doneSearching = boolValue;
+    }
+
+
 }

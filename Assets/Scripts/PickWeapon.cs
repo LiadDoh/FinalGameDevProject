@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PickWeapon : MonoBehaviour
 {
     private GameObject playerObject;
-    // private GameObject firstEnemyObject;
+    public GameObject firstEnemyObject;
     //private GameObject SecondEnemyObject;
     private Transform cam;
 
@@ -18,7 +18,7 @@ public class PickWeapon : MonoBehaviour
     public GameObject rifle3;
     public GameObject rifle4;
 
-    public PlayerUIControl playerUIControl;
+    private PlayerUIControl playerUIControl;
 
     string temp;
     bool wasPlayerClose = false;
@@ -30,18 +30,11 @@ public class PickWeapon : MonoBehaviour
     {
         playerObject = GameObject.Find("remy");
 
-        //firstEnemyObject = GameObject.Find("FirstEnemy");
-
-        //SecondEnemyObject = GameObject.Find("SecondEnemy");
-
         cam = Camera.main.transform;
 
         playerUIControl = GameObject.FindObjectOfType<PlayerUIControl>();
 
         temp = playerUIControl.getObjectiveText();
-
-        Debug.Log("getObjectiveText = " + temp);
-
     }
 
     // Update is called once per frame
@@ -61,25 +54,6 @@ public class PickWeapon : MonoBehaviour
         {
             playerUIControl.setObjectiveText(temp);
         }
-
-        /*  if ((Vector3.Distance(transform.position, firstEnemyObject.transform.position) <= distanceAllowed
-              || Vector3.Distance(transform.position, SecondEnemyObject.transform.position) <= distanceAllowed)
-              && !rifle3.activeInHierarchy && !rifle4.activeInHierarchy)
-          {
-              Debug.Log(firstEnemyObject.tag);
-              gameObject.SetActive(false);
-              rifle3.SetActive(true);
-              rifle4.SetActive(true);
-              playerUIControl.setStateText("Careful now, the enemies got themselves some weapons!!");
-              GetComponent<PickWeapon>().enabled = false;
-
-              if (!rifle1.activeInHierarchy && !rifle2.activeInHierarchy && !playerUIControl.getObjectiveText().Equals(temp))
-              {
-                  playerUIControl.setObjectiveText(temp);
-              }
-
-              Destroy(gameObject);
-          }*/
     }
 
     private void OnTriggerEnter(Collider other)
@@ -92,7 +66,7 @@ public class PickWeapon : MonoBehaviour
             rifle4.SetActive(true);
             playerUIControl.setStateText("Careful now, the enemies got themselves some weapons!!");
             GetComponent<PickWeapon>().enabled = false;
-
+            firstEnemyObject.GetComponent<EnemiesFollow>().setDoneSearching(true);
             if (!rifle1.activeInHierarchy && !rifle2.activeInHierarchy && !playerUIControl.getObjectiveText().Equals(temp))
             {
                 playerUIControl.setObjectiveText(temp);
@@ -110,8 +84,14 @@ public class PickWeapon : MonoBehaviour
         {
             rifle1.SetActive(true);
             rifle2.SetActive(true);
-            cam.position = new Vector3(cam.transform.position.x + 0.3f, cam.transform.position.y, cam.transform.position.z);
+            // cam.position = new Vector3(cam.transform.position.x + 0.3f, cam.transform.position.y, cam.transform.position.z);
             playerUIControl.setObjectiveText("You found a weapon!\nNow get to killing the enemy team!");
+            Debug.Log(firstEnemyObject.GetComponent<EnemiesFollow>().transformToFollow.name + "  VS  " + gameObject.transform.name);
+            if (firstEnemyObject.GetComponent<EnemiesFollow>().transformToFollow == gameObject.transform)
+            {
+                Debug.Log("Yese");
+                firstEnemyObject.GetComponent<EnemiesFollow>().setTransformToFollow(null);
+            }
             GetComponent<PickWeapon>().enabled = false;
             Destroy(gameObject);
         }

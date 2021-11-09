@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     private float walkSpeed = 5f;
     private float crouchSpeed = 3f;
-    private float runSpeed = 8f;
+    private float runSpeed = 15f;
     public float gravity = -9.81f;
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -41,19 +41,20 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move*speed * Time.deltaTime);
+        controller.Move(move * speed * Time.deltaTime);
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight*-2f*gravity);
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
         velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity*Time.deltaTime);
+        controller.Move(velocity * Time.deltaTime);
 
         if (Input.GetKey(KeyCode.LeftControl) && isGrounded)
         {
             speed = crouchSpeed;
             controller.height = 0.5f;
-        }else if (Input.GetKey(KeyCode.LeftShift) && isGrounded)
+        }
+        else if (Input.GetKey(KeyCode.LeftShift) && isGrounded)
         {
             speed = runSpeed;
             controller.height = originalHeight;

@@ -20,8 +20,9 @@ public class SpawnGameObjects : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnRiflePositions();
         setPositionOfPlayerAndNPCs();
+
+        spawnRiflePositions();
 
 
     }
@@ -36,7 +37,8 @@ public class SpawnGameObjects : MonoBehaviour
             Debug.Log("Instantiating rifle in :" + positions[index].name);
             GameObject newRifle = Instantiate(rifle);
             newRifle.transform.position = positions[index].transform.position;
-            riflePositions.Add(positions[index]);
+            newRifle.name = "Rifle " + positions[index].name;
+            riflePositions.Add(newRifle);
             positions.RemoveAt(index);
         }
 
@@ -46,16 +48,22 @@ public class SpawnGameObjects : MonoBehaviour
     private void setPositionOfPlayerAndNPCs()
     {
         int randomIndex = Random.Range(0, positions.Count - 1);
-        player.transform.position = new Vector3(positions[randomIndex].transform.position.x, positions[randomIndex].transform.position.y, positions[randomIndex].transform.position.z);
-        friendlyNPC.transform.position = new Vector3(player.transform.position.x + 1f, player.transform.position.y + 1.5f, player.transform.position.z);
+        player.transform.position = new Vector3(positions[randomIndex].transform.position.x, positions[randomIndex].transform.position.y + 2f, positions[randomIndex].transform.position.z);
+        friendlyNPC.transform.position = new Vector3(player.transform.position.x + 1f, player.transform.position.y - 0.5f, player.transform.position.z);
+        friendlyNPC.SetActive(true);
         Debug.Log("Player and friendlyNPC spawned at: " + positions[randomIndex].name);
 
-        positions.RemoveAt(0);
+
+        positions.RemoveAt(randomIndex);
 
         randomIndex = Random.Range(0, positions.Count - 1);
-        firstEnemyNPC.transform.position = new Vector3(positions[randomIndex].transform.position.x, positions[randomIndex].transform.position.y + 1.5f, positions[randomIndex].transform.position.z);
+        firstEnemyNPC.transform.position = new Vector3(positions[randomIndex].transform.position.x, positions[randomIndex].transform.position.y + 2f, positions[randomIndex].transform.position.z);
         secondEnemyNPC.transform.position = new Vector3(firstEnemyNPC.transform.position.x + 1f, firstEnemyNPC.transform.position.y, firstEnemyNPC.transform.position.z);
+        firstEnemyNPC.SetActive(true);
+        secondEnemyNPC.SetActive(true);
         Debug.Log("First and second enemyNPC spawned at: " + positions[randomIndex].name);
-        positions.RemoveAt(0);
+        positions.RemoveAt(randomIndex);
+
+
     }
 }
