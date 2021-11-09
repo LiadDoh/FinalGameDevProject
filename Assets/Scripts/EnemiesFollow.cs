@@ -22,12 +22,19 @@ public class EnemiesFollow : MonoBehaviour
     private bool beganSearching = false;
     private bool doneSearching = false;
     List<GameObject> remainingActivePositions;
+
+    Rigidbody rb = null;
     // Start is called before the first frame update
     void Start()
     {
         currentState = EnemyState.PATROL;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        // rb = GetComponent<Rigidbody>();
+        // if (rb == null)
+        // {
+        //     rb = gameObject.AddComponent<Rigidbody>();
+        // }
     }
 
     // Update is called once per frame
@@ -43,25 +50,6 @@ public class EnemiesFollow : MonoBehaviour
         }
     }
 
-
-    public void getClosestRiflePosition(List<GameObject> positions)
-    {
-        GameObject closestPosition = null;
-        float distance = Mathf.Infinity;
-        Vector3 position = transform.position;
-        foreach (GameObject go in positions)
-        {
-            Vector3 diff = go.transform.position - position;
-            float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance)
-            {
-                closestPosition = go;
-                distance = curDistance;
-            }
-        }
-        transformToFollow = closestPosition.transform;
-    }
-
     void Patrol()
     {
         if (!doneSearching)
@@ -69,22 +57,20 @@ public class EnemiesFollow : MonoBehaviour
             if (transformToFollow != null)
             {
                 beganSearching = true;
-                //Follow the game object
                 agent.destination = transformToFollow.position;
-                if (!agent.isStopped)
-                {
-                    animator.SetBool("isMoving", true);
-                }
-                if (Vector3.Distance(agent.destination, thisEnemy.transform.position) <= agent.stoppingDistance)
-                {
-                    animator.SetBool("isMoving", false);
-                    if (thisEnemy.tag == "FirstEnemy")
-                    {
-                        thisEnemy.GetComponent<EnemiesFollow>().enabled = false;
-                        thisEnemy.GetComponent<FirstEnemyMotion>().enabled = true;
-                    }
+                //Follow the game object
 
-                }
+                if (Vector3.Distance(agent.destination, thisEnemy.transform.position) > agent.stoppingDistance)
+                    agent.isStopped = false;
+
+                else
+                    agent.isStopped = true;
+
+
+                if (!agent.isStopped)
+                    animator.SetBool("isMoving", true);
+                else
+                    animator.SetBool("isMoving", false);
             }
             else if (beganSearching)
             {
@@ -98,10 +84,47 @@ public class EnemiesFollow : MonoBehaviour
 
     }
 
+    public void getClosestRiflePosition(List<GameObject> activePositions)
+    {
+        int index = 0;
+        float closestDistance = Vector3.Distance(activePositions[index].transform.position, transform.position);
+
+        for (int i = 1; i < activePositions.Count; i++)
+        {
+            float tempDistance = Vector3.Distance(activePositions[i].transform.position, transform.position);
+            if (closestDistance > tempDistance)
+            {
+                closestDistance = tempDistance;
+                index = i;
+            }
+        }
+
+        transformToFollow = activePositions[index].transform;
+        Debug.Log(gameObject.name + " Begun heading to " + transformToFollow.name);
+        activePositions.RemoveAt(index);
+
+        remainingActivePositions = activePositions;
+    }
+
     void Chase()
     {
 
     }
+
+    // //on collision enter
+    // private void OnCollisionEnter(Collision collision)
+    // {
+    //     // if (rb != null)
+    //     rb.isKinematic = true;
+    // }
+
+    // //on collision exit
+    // private void OnCollisionExit(Collision collision)
+    // {
+    //     // if (rb != null)
+    //     rb.isKinematic = false;
+    // }
+
 
     public void setTransformToFollow(Transform newTransform)
     {

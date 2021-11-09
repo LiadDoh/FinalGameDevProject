@@ -57,7 +57,7 @@ public class SpawnGameObjects : MonoBehaviour
         positions.RemoveAt(randomIndex);
 
         randomIndex = Random.Range(0, positions.Count - 1);
-        firstEnemyNPC.transform.position = new Vector3(positions[randomIndex].transform.position.x, positions[randomIndex].transform.position.y + 2f, positions[randomIndex].transform.position.z);
+        firstEnemyNPC.transform.position = new Vector3(positions[randomIndex].transform.position.x, positions[randomIndex].transform.position.y + 1.5f, positions[randomIndex].transform.position.z);
         secondEnemyNPC.transform.position = new Vector3(firstEnemyNPC.transform.position.x + 1f, firstEnemyNPC.transform.position.y, firstEnemyNPC.transform.position.z);
         firstEnemyNPC.SetActive(true);
         secondEnemyNPC.SetActive(true);
