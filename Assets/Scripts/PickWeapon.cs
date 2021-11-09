@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PickWeapon : MonoBehaviour
 {
     private GameObject playerObject;
-   // private GameObject firstEnemyObject;
+    // private GameObject firstEnemyObject;
     //private GameObject SecondEnemyObject;
     private Transform cam;
 
@@ -50,35 +50,36 @@ public class PickWeapon : MonoBehaviour
         Physics.Raycast(cam.position, cam.forward, out hit);
 
         //distance = Vector3.Distance(transform.position, playerObject.transform.position);
-        if (hit.transform != null && hit.transform.gameObject != null && hit.distance < distanceAllowed 
+        if (hit.transform != null && hit.transform.gameObject != null && hit.transform.gameObject == gameObject && hit.distance < distanceAllowed
             && !rifle1.activeInHierarchy && !rifle2.activeInHierarchy)
         {
             playerUIControl.setObjectiveText("Press left click while looking at the rifle to pick it up");
             wasPlayerClose = true;
-        } else if (!rifle1.activeInHierarchy && !rifle2.activeInHierarchy && !playerUIControl.getObjectiveText().Equals(temp) 
-            && wasPlayerClose)
+        }
+        else if (!rifle1.activeInHierarchy && !rifle2.activeInHierarchy && !playerUIControl.getObjectiveText().Equals(temp)
+          && wasPlayerClose)
         {
             playerUIControl.setObjectiveText(temp);
         }
 
-      /*  if ((Vector3.Distance(transform.position, firstEnemyObject.transform.position) <= distanceAllowed
-            || Vector3.Distance(transform.position, SecondEnemyObject.transform.position) <= distanceAllowed)
-            && !rifle3.activeInHierarchy && !rifle4.activeInHierarchy)
-        {
-            Debug.Log(firstEnemyObject.tag);
-            gameObject.SetActive(false);
-            rifle3.SetActive(true);
-            rifle4.SetActive(true);
-            playerUIControl.setStateText("Careful now, the enemies got themselves some weapons!!");
-            GetComponent<PickWeapon>().enabled = false;
+        /*  if ((Vector3.Distance(transform.position, firstEnemyObject.transform.position) <= distanceAllowed
+              || Vector3.Distance(transform.position, SecondEnemyObject.transform.position) <= distanceAllowed)
+              && !rifle3.activeInHierarchy && !rifle4.activeInHierarchy)
+          {
+              Debug.Log(firstEnemyObject.tag);
+              gameObject.SetActive(false);
+              rifle3.SetActive(true);
+              rifle4.SetActive(true);
+              playerUIControl.setStateText("Careful now, the enemies got themselves some weapons!!");
+              GetComponent<PickWeapon>().enabled = false;
 
-            if (!rifle1.activeInHierarchy && !rifle2.activeInHierarchy && !playerUIControl.getObjectiveText().Equals(temp))
-            {
-                playerUIControl.setObjectiveText(temp);
-            }
+              if (!rifle1.activeInHierarchy && !rifle2.activeInHierarchy && !playerUIControl.getObjectiveText().Equals(temp))
+              {
+                  playerUIControl.setObjectiveText(temp);
+              }
 
-            Destroy(gameObject);
-        }*/
+              Destroy(gameObject);
+          }*/
     }
 
     private void OnTriggerEnter(Collider other)
@@ -109,6 +110,7 @@ public class PickWeapon : MonoBehaviour
         {
             rifle1.SetActive(true);
             rifle2.SetActive(true);
+            cam.position = new Vector3(cam.transform.position.x + 0.3f, cam.transform.position.y, cam.transform.position.z);
             playerUIControl.setObjectiveText("You found a weapon!\nNow get to killing the enemy team!");
             GetComponent<PickWeapon>().enabled = false;
             Destroy(gameObject);

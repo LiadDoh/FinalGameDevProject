@@ -45,12 +45,17 @@ public class SpawnGameObjects : MonoBehaviour
 
     private void setPositionOfPlayerAndNPCs()
     {
-        player.transform.position = positions[Random.Range(0, positions.Count - 1)].transform.position;
-        friendlyNPC.transform.position = new Vector3(player.transform.position.x + 1f, player.transform.position.y, player.transform.position.z);
+        int randomIndex = Random.Range(0, positions.Count - 1);
+        player.transform.position = new Vector3(positions[randomIndex].transform.position.x, positions[randomIndex].transform.position.y, positions[randomIndex].transform.position.z);
+        friendlyNPC.transform.position = new Vector3(player.transform.position.x + 1f, player.transform.position.y + 1.5f, player.transform.position.z);
+        Debug.Log("Player and friendlyNPC spawned at: " + positions[randomIndex].name);
+
         positions.RemoveAt(0);
 
-        firstEnemyNPC.transform.position = positions[Random.Range(0, positions.Count - 1)].transform.position;
+        randomIndex = Random.Range(0, positions.Count - 1);
+        firstEnemyNPC.transform.position = new Vector3(positions[randomIndex].transform.position.x, positions[randomIndex].transform.position.y + 1.5f, positions[randomIndex].transform.position.z);
         secondEnemyNPC.transform.position = new Vector3(firstEnemyNPC.transform.position.x + 1f, firstEnemyNPC.transform.position.y, firstEnemyNPC.transform.position.z);
+        Debug.Log("First and second enemyNPC spawned at: " + positions[randomIndex].name);
         positions.RemoveAt(0);
     }
 }
