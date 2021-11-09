@@ -21,17 +21,21 @@ public class PlayerMovement : MonoBehaviour
     bool isStanding;
     Vector3 velocity;
     private float originalHeight;
+
+    private AudioSource footStepSound;
     // Start is called before the first frame update
     void Start()
     {
         speed = walkSpeed;
         cam = Camera.main;
         originalHeight = controller.height;
+        footStepSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector3 temp = transform.position;
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0f)
@@ -58,13 +62,22 @@ public class PlayerMovement : MonoBehaviour
         {
             speed = runSpeed;
             controller.height = originalHeight;
+            if (isGrounded && Input.GetAxis("Vertical") != 0 && (Math.Abs(temp.x - transform.position.x) + Math.Abs(temp.z - transform.position.z) > 0.1
+                || Math.Abs(temp.x - transform.position.x) + Math.Abs(temp.z - transform.position.z) < -0.1)) // Walking audio
+            {
+                if (footStepSound.isPlaying == false)
+                {
+                    footStepSound.Play();
+                }
+            }
+            else if (!(Input.GetAxis("Vertical") < 0)) // Stop walking audio
+                footStepSound.Stop();
         }
         else
         {
             speed = walkSpeed;
             controller.height = originalHeight;
         }
-
 
     }
 

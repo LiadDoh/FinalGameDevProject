@@ -23,18 +23,12 @@ public class EnemiesFollow : MonoBehaviour
     private bool doneSearching = false;
     List<GameObject> remainingActivePositions;
 
-    Rigidbody rb = null;
     // Start is called before the first frame update
     void Start()
     {
         currentState = EnemyState.PATROL;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        // rb = GetComponent<Rigidbody>();
-        // if (rb == null)
-        // {
-        //     rb = gameObject.AddComponent<Rigidbody>();
-        // }
     }
 
     // Update is called once per frame
@@ -111,19 +105,6 @@ public class EnemiesFollow : MonoBehaviour
 
     }
 
-    // //on collision enter
-    // private void OnCollisionEnter(Collision collision)
-    // {
-    //     // if (rb != null)
-    //     rb.isKinematic = true;
-    // }
-
-    // //on collision exit
-    // private void OnCollisionExit(Collision collision)
-    // {
-    //     // if (rb != null)
-    //     rb.isKinematic = false;
-    // }
 
 
     public void setTransformToFollow(Transform newTransform)
