@@ -6,9 +6,12 @@ using UnityEngine.AI;
 public class DoorMotion : MonoBehaviour
 {
     private Animator animator;
-    // private AudioSource doorOpening;
+   // private AudioSource doorOpening;
     private float time = 0;
+    private bool doorIsOpen = true;
     NavMeshObstacle obstacle;
+
+    //private Collider[] colChildren;
 
     // Start is called before the first frame update
     void Start()
@@ -19,19 +22,16 @@ public class DoorMotion : MonoBehaviour
         // doorOpening = GetComponent<AudioSource>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private IEnumerator OnTriggerEnter(Collider other)
     {
-        setDoorMotion(true);
-        Debug.Log("Door is opening");
-        // if (Time.time - time > 1 || time == 0)
-        // {
-        //     setDoorMotion(true);
-        // }
-        // else
-        // {
-        //     yield return new WaitForSeconds(1);
-        //     setDoorMotion(true);
-        // }
+        if (Time.time - time > 1 || time == 0)
+        {
+            setDoorMotion(true);
+        } else
+        {
+            yield return new WaitForSeconds(1);
+            setDoorMotion(true);
+        }
         /*if(other.tag.Equals("FirstEnemy") || other.tag.Equals("SecondEnemy"))
         {
             foreach (Collider collider in colChildren)
@@ -49,20 +49,17 @@ public class DoorMotion : MonoBehaviour
 
     }
 
-    private void OnTriggerExit(Collider other)
+    private IEnumerator OnTriggerExit(Collider other)
     {
-        Debug.Log("Door is closing");
-        // if (Time.time - time > 1 || time == 0)
-        // {
-        //     setDoorMotion(false);
-        // }
-        // else
-        // {
-        //     // yield return new WaitForSeconds(1);
-        //     setDoorMotion(false);
-        // }
-
-        setDoorMotion(false);
+        if (Time.time - time > 1 || time == 0)
+        {
+            setDoorMotion(false);
+        }
+        else
+        {
+            yield return new WaitForSeconds(1);
+            setDoorMotion(false);
+        }
 
     }
 
@@ -70,12 +67,13 @@ public class DoorMotion : MonoBehaviour
 
     private void setDoorMotion(bool isOpen)
     {
-        // if (obstacle != null)
-        // {
-        //     obstacle.enabled = !isOpen;
-        // }
+        if (obstacle != null)
+        {
+            obstacle.enabled = !isOpen;
+        }
         animator.SetBool("Open", isOpen);
-        //  doorOpening.PlayDelayed(0.5f);
-        // time = Time.time;
+      //  doorOpening.PlayDelayed(0.5f);
+        time = Time.time;
+        doorIsOpen = isOpen;
     }
 }
