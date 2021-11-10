@@ -29,7 +29,16 @@ public class Gun : MonoBehaviour
         muzzleFlash.Play();
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+<<<<<<< HEAD
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+=======
+        {
+
+            Debug.Log(hit.transform.name);
+            bullet.transform.position = hit.point;
+            Target target = hit.transform.GetComponent<Target>();
+            if (target != null)
+>>>>>>> main
             {
 
                 Debug.Log(hit.transform.name);
@@ -57,4 +66,17 @@ public class Gun : MonoBehaviour
             Destroy(newBullet);
         }
     }
+<<<<<<< HEAD
 }
+=======
+
+    private IEnumerator spawnBullet()
+    {
+        GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation);
+
+        yield return new WaitForSeconds(2);
+
+        Destroy(newBullet);
+    }
+}
+>>>>>>> main
