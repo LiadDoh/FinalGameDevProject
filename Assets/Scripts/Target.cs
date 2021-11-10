@@ -5,10 +5,26 @@ public class Target : MonoBehaviour
 {
     public float health = 100f;
 
+    public bool isPlayer = false;
+
+    private PlayerUIControl playerUIControl = null;
+    void Start()
+    {
+        if (isPlayer)
+        {
+            playerUIControl = GetComponent<PlayerUIControl>();
+        }
+    }
+
     public void TakeDamage(float amount)
     {
         health -= amount;
-        if (health <= 0)
+        if (playerUIControl != null)
+        {
+            playerUIControl.UpdateHealth(health);
+        }
+        Debug.Log("Health of " + gameObject.name + " is " + health);
+        if (health <= 0f)
             Die();
     }
 

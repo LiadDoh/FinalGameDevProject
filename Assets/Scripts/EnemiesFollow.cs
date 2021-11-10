@@ -115,6 +115,7 @@ public class EnemiesFollow : MonoBehaviour
     public void setDoneSearching(bool boolValue)
     {
         doneSearching = boolValue;
+        currentState = EnemyState.CHASE;
     }
 
 

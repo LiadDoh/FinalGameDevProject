@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-134786
+  m_Name: pb_Mesh-47002
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -410,6 +410,7 @@ MonoBehaviour:
   range: 100
   fpsCam: {fileID: 568203004}
   muzzleFlash: {fileID: 1884829570}
+  isPlayer: 0
   bullet: {fileID: 1065100827}
   impactForce: 30
   fireRate: 15
@@ -5586,6 +5587,7 @@ GameObject:
   - component: {fileID: 285935530}
   - component: {fileID: 285935531}
   - component: {fileID: 285935532}
+  - component: {fileID: 285935533}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5777,6 +5779,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &285935533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285935526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67da96b0667952c4691193590c0eac37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  isPlayer: 1
 --- !u!43 &311168883
 Mesh:
   m_ObjectHideFlags: 0
@@ -11309,6 +11325,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &432487035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432487027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67da96b0667952c4691193590c0eac37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  isPlayer: 0
 --- !u!1 &480828124
 GameObject:
   m_ObjectHideFlags: 0
@@ -11511,6 +11541,7 @@ MonoBehaviour:
   range: 100
   fpsCam: {fileID: 568203004}
   muzzleFlash: {fileID: 316622922}
+  isPlayer: 0
   bullet: {fileID: 1065100827}
   impactForce: 30
   fireRate: 15
@@ -11765,7 +11796,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 568203000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3199cfb188d3c864d9296cfa9b0ad4e5, type: 3}
   m_Name: 
@@ -16734,7 +16765,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-135622
+  m_Name: pb_Mesh-47838
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17372,7 +17403,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-135204
+  m_Name: pb_Mesh-47420
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17971,6 +18002,20 @@ CapsuleCollider:
   m_Height: 1.2
   m_Direction: 1
   m_Center: {x: 0, y: 1.25, z: 0}
+--- !u!114 &1011229418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011229410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67da96b0667952c4691193590c0eac37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  isPlayer: 0
 --- !u!64 &1011229419
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18070,7 +18115,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-133950
+  m_Name: pb_Mesh-46166
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18563,7 +18608,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-134368
+  m_Name: pb_Mesh-46584
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19118,6 +19163,7 @@ MonoBehaviour:
   range: 100
   fpsCam: {fileID: 568203004}
   muzzleFlash: {fileID: 240047044}
+  isPlayer: 0
   bullet: {fileID: 1065100827}
   impactForce: 30
   fireRate: 15
@@ -19365,6 +19411,7 @@ MonoBehaviour:
   range: 100
   fpsCam: {fileID: 568203004}
   muzzleFlash: {fileID: 615618530}
+  isPlayer: 0
   bullet: {fileID: 1065100827}
   impactForce: 30
   fireRate: 15
@@ -19767,6 +19814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstEnemyObject: {fileID: 1011229410}
+  SecondEnemyObject: {fileID: 432487027}
   distanceAllowed: 2
   rifle1: {fileID: 1421624230}
   rifle2: {fileID: 105477009}
@@ -25118,6 +25166,20 @@ MonoBehaviour:
   walk_Speed: 0.5
   run_Speed: 4
   navAgent: {fileID: 2030033793}
+--- !u!114 &2030033800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030033790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67da96b0667952c4691193590c0eac37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  isPlayer: 0
 --- !u!1 &2056197082
 GameObject:
   m_ObjectHideFlags: 0

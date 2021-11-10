@@ -7,7 +7,7 @@ public class PickWeapon : MonoBehaviour
 {
     private GameObject playerObject;
     public GameObject firstEnemyObject;
-    //private GameObject SecondEnemyObject;
+    public GameObject SecondEnemyObject;
     private Transform cam;
 
     float distance;
@@ -58,7 +58,7 @@ public class PickWeapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "FirstEnemy" || other.tag == "SecondEnemy" && !rifle3.activeInHierarchy && !rifle4.activeInHierarchy)
+        if (other.tag == firstEnemyObject.tag || other.tag == SecondEnemyObject.tag && !rifle3.activeInHierarchy && !rifle4.activeInHierarchy)
         {
             Debug.Log(other.tag);
             gameObject.SetActive(false);
@@ -67,6 +67,7 @@ public class PickWeapon : MonoBehaviour
             playerUIControl.setStateText("Careful now, the enemies got themselves some weapons!!");
             GetComponent<PickWeapon>().enabled = false;
             firstEnemyObject.GetComponent<EnemiesFollow>().setDoneSearching(true);
+            // SecondEnemyObject.GetComponent<EnemiesFollow>().setDoneSearching(true);
             if (!rifle1.activeInHierarchy && !rifle2.activeInHierarchy && !playerUIControl.getObjectiveText().Equals(temp))
             {
                 playerUIControl.setObjectiveText(temp);
@@ -84,7 +85,8 @@ public class PickWeapon : MonoBehaviour
         {
             rifle1.SetActive(true);
             rifle2.SetActive(true);
-            // cam.position = new Vector3(cam.transform.position.x + 0.3f, cam.transform.position.y, cam.transform.position.z);
+            cam.GetComponent<ThrowGrenade>().enabled = true;
+            cam.position = new Vector3(cam.transform.position.x, cam.transform.position.y, cam.transform.position.z + 0.3f);
             playerUIControl.setObjectiveText("You found a weapon!\nNow get to killing the enemy team!");
             Debug.Log(firstEnemyObject.GetComponent<EnemiesFollow>().transformToFollow.name + "  VS  " + gameObject.transform.name);
             if (firstEnemyObject.GetComponent<EnemiesFollow>().transformToFollow == gameObject.transform)

@@ -43,9 +43,8 @@ public class PlayerUIControl : MonoBehaviour
         isStateTextActive = true;
     }
 
-    public void setHealthText(float damage)
+    public void UpdateHealth(float newHealth)
     {
-        float prevHealth = float.Parse(health.text.Split('/')[0], CultureInfo.InvariantCulture.NumberFormat);
-        health.text = (prevHealth - damage).ToString() + maxHealth;
+        health.text = newHealth + maxHealth;
     }
 }
