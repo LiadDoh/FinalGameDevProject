@@ -8,13 +8,15 @@ public class PlayerUIControl : MonoBehaviour
     public Text objective;
     public Text state;
 
-    public Text health;
+    public Text health = null;
 
     private float timeToAppear = 2f;
     private float timeWhenDisappear;
     private bool isStateTextActive = false;
 
     private string maxHealth = " / 100";
+
+
 
     private void Update()
     {

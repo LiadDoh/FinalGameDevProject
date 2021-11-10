@@ -89,7 +89,7 @@ public class PickWeapon : MonoBehaviour
             cam.GetComponent<ThrowGrenade>().enabled = true;
             cam.position = new Vector3(cam.transform.position.x, cam.transform.position.y, cam.transform.position.z + 0.3f);
             playerUIControl.setObjectiveText("You found a weapon!\nNow get to killing the enemy team!");
-            Debug.Log(firstEnemyObject.GetComponent<EnemiesFollow>().transformToFollow.name + "  VS  " + gameObject.transform.name);
+            // Debug.Log(firstEnemyObject.GetComponent<EnemiesFollow>().transformToFollow.name + "  VS  " + gameObject.transform.name);
             if (firstEnemyObject.GetComponent<EnemiesFollow>().transformToFollow == gameObject.transform)
             {
                 Debug.Log("Yese");

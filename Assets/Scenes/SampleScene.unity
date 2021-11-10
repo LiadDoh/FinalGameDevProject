@@ -5682,7 +5682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objective: {fileID: 1736146139}
   state: {fileID: 480828126}
-  health: {fileID: 0}
+  health: {fileID: 1049024942}
 --- !u!82 &285935532
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11806,7 +11806,7 @@ MonoBehaviour:
   delay: 3
   radius: 5
   explosionForce: 100
-  damage: 100
+  damage: 50
 --- !u!1 &615618527
 GameObject:
   m_ObjectHideFlags: 0

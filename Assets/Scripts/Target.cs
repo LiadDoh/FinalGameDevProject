@@ -50,8 +50,8 @@ public class Target : MonoBehaviour
         Debug.Log(gameObject.name + " has died");
         if (isPlayer)
         {
-            animationStateController = GameObject.FindGameObjectWithTag("remy").GetComponent<AnimationStateController>();
-            animationStateController.dead();
+            //animationStateController = GameObject.FindGameObjectWithTag("remy").GetComponent<AnimationStateController>();
+            //animationStateController.dead();
         }
         else if (gameObject != null)
         {
