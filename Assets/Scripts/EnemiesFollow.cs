@@ -71,7 +71,6 @@ public class EnemiesFollow : MonoBehaviour
                 Debug.Log("Player has taken the enemies selected positioned weapon, switching to alternate position...");
                 beganSearching = false; // Prevents repeating
                 getClosestRiflePosition(remainingActivePositions);
-
             }
 
         }

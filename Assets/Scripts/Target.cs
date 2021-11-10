@@ -30,6 +30,9 @@ public class Target : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject);
+        if (gameObject != null)
+        {
+            Destroy(gameObject);
+        }
     }
 }
