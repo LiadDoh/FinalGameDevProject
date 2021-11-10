@@ -48,4 +48,8 @@ public class PlayerUIControl : MonoBehaviour
         float prevHealth = float.Parse(health.text.Split('/')[0], CultureInfo.InvariantCulture.NumberFormat);
         health.text = (prevHealth - damage).ToString() + maxHealth;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main
