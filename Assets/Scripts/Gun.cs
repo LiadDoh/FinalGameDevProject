@@ -52,6 +52,9 @@ public class Gun : MonoBehaviour
 
         yield return new WaitForSeconds(2);
 
-        Destroy(newBullet);
+        if (newBullet != null)
+        {
+            Destroy(newBullet);
+        }
     }
 }
