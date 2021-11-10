@@ -9,6 +9,8 @@ public class Gun : MonoBehaviour
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
 
+    public bool isPlayer = false;
+
     public GameObject bullet;
     public float impactForce = 0.1f;
     public float fireRate = 15f;
@@ -20,11 +22,15 @@ public class Gun : MonoBehaviour
         if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
         {
             nextTimeToFire = Time.time + 1f / fireRate;
-            Shoot();
+            PlayerShoot();
+        }
+        if (!isPlayer)
+        {
+            NPCShoot();
         }
     }
 
-    private void Shoot()
+    private void PlayerShoot()
     {
         muzzleFlash.Play();
         RaycastHit hit;
@@ -33,7 +39,7 @@ public class Gun : MonoBehaviour
             {
 
                 Debug.Log(hit.transform.name);
-                bullet.transform.position = hit.point;
+                spawnAndDestroyBullet(hit);
                 Target target = hit.transform.GetComponent<Target>();
                 if (target != null)
                 {
@@ -46,15 +52,19 @@ public class Gun : MonoBehaviour
             }
     }
 
-    private IEnumerator spawnBullet()
+    private void NPCShoot()
+    {
+
+    }
+
+    private void spawnAndDestroyBullet(RaycastHit hit)
     {
         GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation);
-
-        yield return new WaitForSeconds(2);
+        newBullet.transform.position = hit.point;
 
         if (newBullet != null)
         {
-            Destroy(newBullet);
+            Destroy(newBullet, 2);
         }
     }
 }
