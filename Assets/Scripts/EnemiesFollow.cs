@@ -9,9 +9,16 @@ public enum EnemyState
     CHASE
 }
 
+public enum JobState
+{
+    RUN,
+    SHOOT
+}
+
 public class EnemiesFollow : MonoBehaviour
 {
     private EnemyState currentState;
+    private JobState jobState;
     //Transform that NPC has to follow
     public Transform transformToFollow = null;
     //NavMesh Agent variable
@@ -22,11 +29,15 @@ public class EnemiesFollow : MonoBehaviour
     private bool beganSearching = false;
     private bool doneSearching = false;
     List<GameObject> remainingActivePositions;
+    public GameObject[] remainingActiveEnemies;
+    public GameObject target;
+    private float nextState;
 
     // Start is called before the first frame update
     void Start()
     {
         currentState = EnemyState.PATROL;
+        jobState = JobState.RUN;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
     }
@@ -102,9 +113,25 @@ public class EnemiesFollow : MonoBehaviour
 
     void Chase()
     {
+        target = remainingActiveEnemies[Random.Range(0, remainingActiveEnemies.Length)];
+        nextState -= Time.deltaTime;
+        switch(jobState){
+            case JobState.RUN:
+                if (Vector3.Distance(transform.position, target.transform.position) < 0.02f){
+                    jobState = JobState.SHOOT;
+                    nextState = Random.Range(1.0f, 3.0f);
+                }
+                break;
+            case JobState.SHOOT:
+                if(nextState < 0){
+                    jobState = JobState.RUN;
+                    target = remainingActiveEnemies[Random.Range(0, remainingActiveEnemies.Length)];
+                    agent.destination = target.transform.position;
+                }
+                break;
+        }
 
     }
-
 
 
     public void setTransformToFollow(Transform newTransform)
@@ -115,6 +142,7 @@ public class EnemiesFollow : MonoBehaviour
     public void setDoneSearching(bool boolValue)
     {
         doneSearching = boolValue;
+        currentState = EnemyState.CHASE;
     }
 
 
