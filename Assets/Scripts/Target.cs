@@ -8,11 +8,17 @@ public class Target : MonoBehaviour
     public bool isPlayer = false;
 
     private PlayerUIControl playerUIControl = null;
+
+    private EnemiesFollow enemiesFollow = null;
     void Start()
     {
         if (isPlayer)
         {
             playerUIControl = GetComponent<PlayerUIControl>();
+        }
+        else if (gameObject.tag.Equals("FirstEnemy"))
+        {
+            enemiesFollow = GameObject.FindGameObjectWithTag("SecondEnemy").GetComponent<EnemiesFollow>();
         }
     }
 
@@ -30,9 +36,19 @@ public class Target : MonoBehaviour
 
     private void Die()
     {
-        if (gameObject != null)
+        if (isPlayer)
         {
-            Destroy(gameObject);
+
+        }
+        else if (gameObject != null)
+        {
+            if (enemiesFollow != null && enemiesFollow.getState().Equals("PATROL") && enemiesFollow.isActiveAndEnabled)
+            {
+                enemiesFollow.transformToFollow = gameObject.GetComponent<EnemiesFollow>().GetTransformToFollow();
+                enemiesFollow.setAgentStoppingDistance(0);
+                Debug.Log("First enemy has died, Secnond enemy began heading to " + enemiesFollow.transformToFollow.name);
+            }
+            gameObject.SetActive(false);
         }
     }
 }

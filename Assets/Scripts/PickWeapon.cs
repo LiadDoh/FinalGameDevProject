@@ -58,7 +58,8 @@ public class PickWeapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == firstEnemyObject.tag || other.tag == SecondEnemyObject.tag && !rifle3.activeInHierarchy && !rifle4.activeInHierarchy)
+        Debug.Log("Collider name : " + other.name);
+        if (other.tag.Equals(firstEnemyObject.tag) || other.tag.Equals(SecondEnemyObject.tag) && !rifle3.activeInHierarchy && !rifle4.activeInHierarchy)
         {
             Debug.Log(other.tag);
             gameObject.SetActive(false);
@@ -66,8 +67,8 @@ public class PickWeapon : MonoBehaviour
             rifle4.SetActive(true);
             playerUIControl.setStateText("Careful now, the enemies got themselves some weapons!!");
             GetComponent<PickWeapon>().enabled = false;
-            firstEnemyObject.GetComponent<EnemiesFollow>().setDoneSearching(true);
-            // SecondEnemyObject.GetComponent<EnemiesFollow>().setDoneSearching(true);
+            firstEnemyObject.GetComponent<EnemiesFollow>().SetStateToChase(true);
+            SecondEnemyObject.GetComponent<EnemiesFollow>().SetStateToChase(true);
             if (!rifle1.activeInHierarchy && !rifle2.activeInHierarchy && !playerUIControl.getObjectiveText().Equals(temp))
             {
                 playerUIControl.setObjectiveText(temp);

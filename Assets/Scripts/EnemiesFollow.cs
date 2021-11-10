@@ -20,7 +20,6 @@ public class EnemiesFollow : MonoBehaviour
     Animator animator;
 
     private bool beganSearching = false;
-    private bool doneSearching = false;
     List<GameObject> remainingActivePositions;
 
     // Start is called before the first frame update
@@ -46,33 +45,29 @@ public class EnemiesFollow : MonoBehaviour
 
     void Patrol()
     {
-        if (!doneSearching)
+        if (transformToFollow != null)
         {
-            if (transformToFollow != null)
-            {
-                beganSearching = true;
-                agent.destination = transformToFollow.position;
-                //Follow the game object
+            beganSearching = true;
+            agent.destination = transformToFollow.position;
+            //Follow the game object
 
-                if (Vector3.Distance(agent.destination, thisEnemy.transform.position) > agent.stoppingDistance)
-                    agent.isStopped = false;
+            if (Vector3.Distance(agent.destination, thisEnemy.transform.position) > agent.stoppingDistance)
+                agent.isStopped = false;
 
-                else
-                    agent.isStopped = true;
+            else
+                agent.isStopped = true;
 
 
-                if (!agent.isStopped)
-                    animator.SetBool("isMoving", true);
-                else
-                    animator.SetBool("isMoving", false);
-            }
-            else if (beganSearching)
-            {
-                Debug.Log("Player has taken the enemies selected positioned weapon, switching to alternate position...");
-                beganSearching = false; // Prevents repeating
-                getClosestRiflePosition(remainingActivePositions);
-            }
-
+            if (!agent.isStopped)
+                animator.SetBool("isMoving", true);
+            else
+                animator.SetBool("isMoving", false);
+        }
+        else if (beganSearching)
+        {
+            Debug.Log("Player has taken the enemies selected positioned weapon, switching to alternate position...");
+            beganSearching = false; // Prevents repeating
+            getClosestRiflePosition(remainingActivePositions);
         }
 
     }
@@ -111,10 +106,25 @@ public class EnemiesFollow : MonoBehaviour
         transformToFollow = newTransform;
     }
 
-    public void setDoneSearching(bool boolValue)
+    public Transform GetTransformToFollow()
     {
-        doneSearching = boolValue;
+        return transformToFollow;
+    }
+
+    public void SetStateToChase(bool boolValue)
+    {
         currentState = EnemyState.CHASE;
+    }
+
+    public string getState()
+    {
+        Debug.Log(currentState);
+        return currentState.ToString();
+    }
+
+    public void setAgentStoppingDistance(float d)
+    {
+        agent.stoppingDistance = d;
     }
 
 
