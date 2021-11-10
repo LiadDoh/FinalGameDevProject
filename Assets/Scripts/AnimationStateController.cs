@@ -43,4 +43,9 @@ public class AnimationStateController : MonoBehaviour
             animator.SetBool("isRunning", false);
         }
     }
+
+    public void dead()
+    {
+        animator.SetBool("isDead", true);
+    }
 }

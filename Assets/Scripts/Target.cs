@@ -9,16 +9,27 @@ public class Target : MonoBehaviour
 
     private PlayerUIControl playerUIControl = null;
 
+    private EnemiesFollow selfEnemiesFollow = null;
     private EnemiesFollow enemiesFollow = null;
+
+    private SC_NPCFollow selfNPCFollow = null;
+
+    private AnimationStateController animationStateController = null;
     void Start()
     {
         if (isPlayer)
         {
             playerUIControl = GetComponent<PlayerUIControl>();
         }
-        else if (gameObject.tag.Equals("FirstEnemy"))
+        else if (gameObject.tag.Equals("FirstEnemy") || gameObject.tag.Equals("SecondEnemy"))
         {
-            enemiesFollow = GameObject.FindGameObjectWithTag("SecondEnemy").GetComponent<EnemiesFollow>();
+            if (gameObject.tag.Equals("FirstEnemy"))
+                enemiesFollow = GameObject.FindGameObjectWithTag("SecondEnemy").GetComponent<EnemiesFollow>();
+            selfEnemiesFollow = GetComponent<EnemiesFollow>();
+        }
+        else if (gameObject.tag.Equals("NPC"))
+        {
+            selfNPCFollow = GetComponent<SC_NPCFollow>();
         }
     }
 
@@ -36,19 +47,32 @@ public class Target : MonoBehaviour
 
     private void Die()
     {
+        Debug.Log(gameObject.name + " has died");
         if (isPlayer)
         {
-
+            animationStateController = GameObject.FindGameObjectWithTag("remy").GetComponent<AnimationStateController>();
+            animationStateController.dead();
         }
         else if (gameObject != null)
         {
-            if (enemiesFollow != null && enemiesFollow.getState().Equals("PATROL") && enemiesFollow.isActiveAndEnabled)
+            if (enemiesFollow != null && enemiesFollow.getState().Equals("PATROL") && enemiesFollow.enabled)
             {
                 enemiesFollow.transformToFollow = gameObject.GetComponent<EnemiesFollow>().GetTransformToFollow();
                 enemiesFollow.setAgentStoppingDistance(0);
                 Debug.Log("First enemy has died, Secnond enemy began heading to " + enemiesFollow.transformToFollow.name);
             }
-            gameObject.SetActive(false);
+            if (selfEnemiesFollow != null)
+            {
+                selfEnemiesFollow.stopAgent();
+                selfEnemiesFollow.enabled = false;
+            }
+            else if (selfNPCFollow != null)
+            {
+                selfNPCFollow.stopAgent();
+                selfNPCFollow.enabled = false;
+            }
+            gameObject.GetComponent<Animator>().SetBool("isDead", true);
+
         }
     }
 }

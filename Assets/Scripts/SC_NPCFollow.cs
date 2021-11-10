@@ -35,4 +35,9 @@ public class SC_NPCFollow : MonoBehaviour
             animator.SetBool("isMoving", false);
         }
     }
+
+    public void stopAgent()
+    {
+        navAgent.isStopped = true;
+    }
 }

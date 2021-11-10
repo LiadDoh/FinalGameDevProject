@@ -127,5 +127,10 @@ public class EnemiesFollow : MonoBehaviour
         agent.stoppingDistance = d;
     }
 
+    public void stopAgent()
+    {
+        agent.isStopped = true;
+    }
+
 
 }
