@@ -62,16 +62,16 @@ public class PlayerMovement : MonoBehaviour
         {
             speed = runSpeed;
             controller.height = originalHeight;
-            // if (isGrounded && Input.GetAxis("Vertical") != 0 && (Math.Abs(temp.x - transform.position.x) + Math.Abs(temp.z - transform.position.z) > 0.1
-            //     || Math.Abs(temp.x - transform.position.x) + Math.Abs(temp.z - transform.position.z) < -0.1)) // Walking audio
-            // {
-            //     if (footStepSound.isPlaying == false)
-            //     {
-            //         footStepSound.Play();
-            //     }
-            // }
-            // else if (!(Input.GetAxis("Vertical") < 0)) // Stop walking audio
-            //     footStepSound.Stop();
+            if (isGrounded && Input.GetAxis("Vertical") != 0 && (Math.Abs(temp.x - transform.position.x) + Math.Abs(temp.z - transform.position.z) > 0.1
+                || Math.Abs(temp.x - transform.position.x) + Math.Abs(temp.z - transform.position.z) < -0.1)) // Walking audio
+            {
+                if (footStepSound.isPlaying == false)
+                {
+                    footStepSound.Play();
+                }
+            }
+            else if (!(Input.GetAxis("Vertical") < 0)) // Stop walking audio
+                footStepSound.Stop();
         }
         else
         {
