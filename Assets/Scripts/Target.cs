@@ -23,6 +23,7 @@ public class Target : MonoBehaviour
         }
         else if (gameObject.tag.Equals("FirstEnemy") || gameObject.tag.Equals("SecondEnemy"))
         {
+            // Debug.Log("EnemiesFollow " + gameObject.tag);
             if (gameObject.tag.Equals("FirstEnemy"))
                 enemiesFollow = GameObject.FindGameObjectWithTag("SecondEnemy").GetComponent<EnemiesFollow>();
             selfEnemiesFollow = GetComponent<EnemiesFollow>();

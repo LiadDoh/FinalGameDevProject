@@ -140,7 +140,7 @@ public class EnemiesFollow : MonoBehaviour
     {
         Debug.Log("Enemy" + gameObject.name + " is now chasing the player");
         currentState = EnemyState.CHASE;
-        gun = GameObject.Find("Gun").GetComponent<Gun>();
+        gun = gameObject.GetComponentInChildren<Gun>();
     }
 
     public string getState()
