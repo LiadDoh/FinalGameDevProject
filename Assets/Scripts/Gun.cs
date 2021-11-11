@@ -57,7 +57,7 @@ public class Gun : MonoBehaviour
 
     }
 
-    private void spawnAndDestroyBullet(RaycastHit hit)
+    public void spawnAndDestroyBullet(RaycastHit hit)
     {
         GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation);
         newBullet.transform.position = hit.point;

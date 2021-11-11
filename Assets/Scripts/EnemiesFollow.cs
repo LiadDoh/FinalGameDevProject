@@ -9,13 +9,19 @@ public enum EnemyState
     CHASE
 }
 
-
-
 public class EnemiesFollow : MonoBehaviour
 {
+
+    [SerializeField] private float cooldown = 5;
+    private float cooldownTimer;
     private EnemyState currentState;
     //Transform that NPC has to follow
     public Transform transformToFollow = null;
+    public Camera fpsCam;
+    public float impactForce = 0.1f;
+    public float fireRate = 15f;
+
+    private float nextTimeToFire = 0f;
     //NavMesh Agent variable
     NavMeshAgent agent;
     public GameObject thisEnemy;
@@ -114,7 +120,30 @@ public class EnemiesFollow : MonoBehaviour
 
     void shoot()
     {
-        //agent.isStopped = false;
+    cooldownTimer -= Time.deltaTime;
+
+    if(cooldownTimer > 0)
+        return;
+
+    cooldownTimer = cooldown;
+    RaycastHit hit;
+    if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+        {
+            
+            Debug.Log(hit.transform.name);
+            spawnAndDestroyBullet(hit);
+            Target target = hit.transform.GetComponent<Target>();
+            if (target != null)
+            {
+                target.TakeDamage(damage);
+            }
+            if (hit.rigidbody != null)
+            {
+                hit.rigidbody.AddForce(-hit.normal * impactForce);
+            }
+        }
+    agent.isStopped = false;
     }
 
 
@@ -150,3 +179,4 @@ public class EnemiesFollow : MonoBehaviour
     }
 
 }
+
