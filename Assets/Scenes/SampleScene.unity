@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-3716
+  m_Name: pb_Mesh-3778
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11233,7 +11233,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210d9b49f06d7574ea4f87618911379a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldown: 5
   transformToFollow: {fileID: 1011229411}
+  fpsCam: {fileID: 0}
+  impactForce: 0.1
+  fireRate: 15
   thisEnemy: {fileID: 432487027}
   remainingActiveEnemies:
   - {fileID: 118774179}
@@ -11431,7 +11435,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100016, guid: 1dc2a27ad3a63d24bad7f1c6d159013e, type: 3}
       propertyPath: m_Name
-      value: Rifle 3
+      value: Gun
       objectReference: {fileID: 0}
     - target: {fileID: 100016, guid: 1dc2a27ad3a63d24bad7f1c6d159013e, type: 3}
       propertyPath: m_IsActive
@@ -16769,7 +16773,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-4552
+  m_Name: pb_Mesh-4614
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17677,7 +17681,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-4134
+  m_Name: pb_Mesh-4196
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18238,7 +18242,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210d9b49f06d7574ea4f87618911379a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldown: 5
   transformToFollow: {fileID: 0}
+  fpsCam: {fileID: 0}
+  impactForce: 0.1
+  fireRate: 15
   thisEnemy: {fileID: 1011229410}
   remainingActiveEnemies:
   - {fileID: 118774179}
@@ -18393,7 +18401,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2880
+  m_Name: pb_Mesh-2942
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18961,7 +18969,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-3298
+  m_Name: pb_Mesh-3360
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19662,7 +19670,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100016, guid: 1dc2a27ad3a63d24bad7f1c6d159013e, type: 3}
       propertyPath: m_Name
-      value: Rifle 4
+      value: Gun
       objectReference: {fileID: 0}
     - target: {fileID: 100016, guid: 1dc2a27ad3a63d24bad7f1c6d159013e, type: 3}
       propertyPath: m_IsActive
@@ -25529,7 +25537,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210d9b49f06d7574ea4f87618911379a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldown: 5
   transformToFollow: {fileID: 285935529}
+  fpsCam: {fileID: 0}
+  impactForce: 0.1
+  fireRate: 15
   thisEnemy: {fileID: 2030033790}
   remainingActiveEnemies: []
   target: {fileID: 0}
@@ -25599,7 +25611,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69dd15b92fe9cdc42bf0604369c2f0c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walk_Speed: 0.5
   run_Speed: 4
   navAgent: {fileID: 2030033793}
 --- !u!114 &2030033800

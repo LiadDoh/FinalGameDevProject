@@ -11,16 +11,16 @@ public enum EnemyState
 
 public class EnemiesFollow : MonoBehaviour
 {
-
-    [SerializeField] private float cooldown = 5;
-    private float cooldownTimer;
+    private Gun gun;
+    [SerializeField] private float cooldown = 5f;
+    private float cooldownTimer = 5f;
     private EnemyState currentState;
     //Transform that NPC has to follow
     public Transform transformToFollow = null;
-    public Camera fpsCam;
     public float impactForce = 0.1f;
     public float fireRate = 15f;
-
+    private float range = 10f;
+    private float damage = 10f;
     private float nextTimeToFire = 0f;
     //NavMesh Agent variable
     NavMeshAgent agent;
@@ -127,22 +127,21 @@ public class EnemiesFollow : MonoBehaviour
 
     cooldownTimer = cooldown;
     RaycastHit hit;
-    if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+    if (Physics.Raycast(transform.position,transform.forward, out hit, range))
+    {
+        Debug.Log(hit.transform.name);
+        gun.spawnAndDestroyBullet(hit);
+        Target target = hit.transform.GetComponent<Target>();
+        if (target != null)
         {
-            
-            Debug.Log(hit.transform.name);
-            spawnAndDestroyBullet(hit);
-            Target target = hit.transform.GetComponent<Target>();
-            if (target != null)
-            {
-                target.TakeDamage(damage);
-            }
-            if (hit.rigidbody != null)
-            {
-                hit.rigidbody.AddForce(-hit.normal * impactForce);
-            }
+            Debug.Log(target+" took damage");
+            target.TakeDamage(damage);
         }
+        if (hit.rigidbody != null)
+        {
+            hit.rigidbody.AddForce(-hit.normal * impactForce);
+        }
+    }
     agent.isStopped = false;
     }
 
@@ -160,6 +159,7 @@ public class EnemiesFollow : MonoBehaviour
     public void SetStateToChase(bool boolValue)
     {
         currentState = EnemyState.CHASE;
+        gun = GameObject.Find("Gun").GetComponent<Gun>();
     }
 
     public string getState()
