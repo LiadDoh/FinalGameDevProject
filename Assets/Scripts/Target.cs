@@ -65,12 +65,15 @@ public class Target : MonoBehaviour
             {
                 selfEnemiesFollow.stopAgent();
                 selfEnemiesFollow.enabled = false;
+                Debug.Log("Enemy ded");
             }
             else if (selfNPCFollow != null)
             {
                 selfNPCFollow.stopAgent();
                 selfNPCFollow.enabled = false;
+                Debug.Log("NPC ded");
             }
+
             gameObject.GetComponent<Animator>().SetBool("isDead", true);
 
         }

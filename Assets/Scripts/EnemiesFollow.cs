@@ -12,16 +12,14 @@ public enum EnemyState
 public class EnemiesFollow : MonoBehaviour
 {
     private Gun gun;
-    [SerializeField] private float cooldown = 5f;
-    private float cooldownTimer = 5f;
     private EnemyState currentState;
     //Transform that NPC has to follow
     public Transform transformToFollow = null;
-    public float impactForce = 0.1f;
-    public float fireRate = 15f;
-    private float range = 10f;
-    private float damage = 10f;
-    private float nextTimeToFire = 0f;
+    // public float impactForce = 0.1f;
+    // public float fireRate = 15f;
+    // private float range = 10f;
+    // private float damage = 10f;
+    // private float nextTimeToFire = 0f;
     //NavMesh Agent variable
     NavMeshAgent agent;
     public GameObject thisEnemy;
@@ -32,7 +30,7 @@ public class EnemiesFollow : MonoBehaviour
 
     public GameObject[] remainingActiveEnemies;
     public GameObject target;
-    private int nextState=0;
+    private int nextState = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -110,39 +108,21 @@ public class EnemiesFollow : MonoBehaviour
     {
         target = remainingActiveEnemies[nextState];
         agent.SetDestination(target.transform.position);
-        if (Vector3.Distance(target.transform.position,transform.position) < 10f)
+        if (Vector3.Distance(target.transform.position, transform.position) < 20f)
         {
+            if (transform.tag.Equals("SecondEnemy"))
+                Debug.Log("Second Enemy has reached the player");
             agent.isStopped = true;
             animator.SetBool("isMoving", false);
-            shoot(); 
+            transform.LookAt(target.transform);
+            gun.NPCShoot();
         }
-    }
-
-    void shoot()
-    {
-    cooldownTimer -= Time.deltaTime;
-
-    if(cooldownTimer > 0)
-        return;
-
-    cooldownTimer = cooldown;
-    RaycastHit hit;
-    if (Physics.Raycast(transform.position,transform.forward, out hit, range))
-    {
-        Debug.Log(hit.transform.name);
-        gun.spawnAndDestroyBullet(hit);
-        Target target = hit.transform.GetComponent<Target>();
-        if (target != null)
+        else
         {
-            Debug.Log(target+" took damage");
-            target.TakeDamage(damage);
+            agent.isStopped = false;
+            animator.SetBool("isMoving", true);
         }
-        if (hit.rigidbody != null)
-        {
-            hit.rigidbody.AddForce(-hit.normal * impactForce);
-        }
-    }
-    agent.isStopped = false;
+
     }
 
 
@@ -158,6 +138,7 @@ public class EnemiesFollow : MonoBehaviour
 
     public void SetStateToChase(bool boolValue)
     {
+        Debug.Log("Enemy" + gameObject.name + " is now chasing the player");
         currentState = EnemyState.CHASE;
         gun = GameObject.Find("Gun").GetComponent<Gun>();
     }

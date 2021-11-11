@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-3778
+  m_Name: pb_Mesh-14232
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -302,6 +302,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 1dc2a27ad3a63d24bad7f1c6d159013e, type: 3}
+      propertyPath: m_TagString
+      value: Gun
+      objectReference: {fileID: 0}
     - target: {fileID: 400016, guid: 1dc2a27ad3a63d24bad7f1c6d159013e, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -414,6 +418,7 @@ MonoBehaviour:
   bullet: {fileID: 1065100827}
   impactForce: 30
   fireRate: 15
+  holder: {fileID: 2030033790}
 --- !u!1 &118774179 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d39aa7124217e2144af2361cfec495cc, type: 3}
@@ -11233,11 +11238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210d9b49f06d7574ea4f87618911379a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 5
   transformToFollow: {fileID: 1011229411}
-  fpsCam: {fileID: 0}
-  impactForce: 0.1
-  fireRate: 15
   thisEnemy: {fileID: 432487027}
   remainingActiveEnemies:
   - {fileID: 118774179}
@@ -11253,7 +11254,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 4
+  m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -11441,6 +11442,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 1dc2a27ad3a63d24bad7f1c6d159013e, type: 3}
+      propertyPath: m_TagString
+      value: Gun
+      objectReference: {fileID: 0}
     - target: {fileID: 400016, guid: 1dc2a27ad3a63d24bad7f1c6d159013e, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -11547,12 +11552,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   range: 100
-  fpsCam: {fileID: 568203004}
+  fpsCam: {fileID: 0}
   muzzleFlash: {fileID: 316622922}
   isPlayer: 0
   bullet: {fileID: 1065100827}
   impactForce: 30
   fireRate: 15
+  holder: {fileID: 1011229410}
 --- !u!1 &515153641
 GameObject:
   m_ObjectHideFlags: 0
@@ -16692,6 +16698,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 1dc2a27ad3a63d24bad7f1c6d159013e, type: 3}
+      propertyPath: m_TagString
+      value: Gun
+      objectReference: {fileID: 0}
     - target: {fileID: 400016, guid: 1dc2a27ad3a63d24bad7f1c6d159013e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -16773,7 +16783,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-4614
+  m_Name: pb_Mesh-15068
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17681,7 +17691,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-4196
+  m_Name: pb_Mesh-14650
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18242,11 +18252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210d9b49f06d7574ea4f87618911379a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 5
   transformToFollow: {fileID: 0}
-  fpsCam: {fileID: 0}
-  impactForce: 0.1
-  fireRate: 15
   thisEnemy: {fileID: 1011229410}
   remainingActiveEnemies:
   - {fileID: 118774179}
@@ -18262,7 +18268,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 4
+  m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -18401,7 +18407,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2942
+  m_Name: pb_Mesh-13396
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18571,6 +18577,7 @@ GameObject:
   - component: {fileID: 1065100830}
   - component: {fileID: 1065100829}
   - component: {fileID: 1065100828}
+  - component: {fileID: 1065100832}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -18587,7 +18594,7 @@ SphereCollider:
   m_GameObject: {fileID: 1065100827}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -18654,6 +18661,22 @@ Transform:
   m_Father: {fileID: 1991769224}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1065100832
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065100827}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!43 &1268566304
 Mesh:
   m_ObjectHideFlags: 0
@@ -18969,7 +18992,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-3360
+  m_Name: pb_Mesh-13814
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19524,10 +19547,11 @@ MonoBehaviour:
   range: 100
   fpsCam: {fileID: 568203004}
   muzzleFlash: {fileID: 240047044}
-  isPlayer: 0
+  isPlayer: 1
   bullet: {fileID: 1065100827}
   impactForce: 30
   fireRate: 5
+  holder: {fileID: 0}
 --- !u!1 &1422063222
 GameObject:
   m_ObjectHideFlags: 0
@@ -19676,6 +19700,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 1dc2a27ad3a63d24bad7f1c6d159013e, type: 3}
+      propertyPath: m_TagString
+      value: Gun
+      objectReference: {fileID: 0}
     - target: {fileID: 400016, guid: 1dc2a27ad3a63d24bad7f1c6d159013e, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -19770,12 +19798,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   range: 100
-  fpsCam: {fileID: 568203004}
+  fpsCam: {fileID: 0}
   muzzleFlash: {fileID: 615618530}
   isPlayer: 0
   bullet: {fileID: 1065100827}
   impactForce: 30
   fireRate: 15
+  holder: {fileID: 432487027}
 --- !u!1 &1516111491
 GameObject:
   m_ObjectHideFlags: 0
@@ -25537,11 +25566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210d9b49f06d7574ea4f87618911379a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 5
   transformToFollow: {fileID: 285935529}
-  fpsCam: {fileID: 0}
-  impactForce: 0.1
-  fireRate: 15
   thisEnemy: {fileID: 2030033790}
   remainingActiveEnemies: []
   target: {fileID: 0}
@@ -25651,7 +25676,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056197082}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103.49, y: 9.037, z: 31.525}
+  m_LocalPosition: {x: 103.49, y: 8.04, z: 31.525}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 515153642}
