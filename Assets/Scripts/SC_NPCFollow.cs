@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class SC_NPCFollow : MonoBehaviour
 {
 
-    public float walk_Speed = 0.5f;
+    //public float walk_Speed = 0.5f;
     public float run_Speed = 4f;
     public NavMeshAgent navAgent;
     private Animator animator;

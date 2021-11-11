@@ -14,7 +14,7 @@ public class Target : MonoBehaviour
 
     private SC_NPCFollow selfNPCFollow = null;
 
-    private AnimationStateController animationStateController = null;
+    //private AnimationStateController animationStateController = null;
     void Start()
     {
         if (isPlayer)

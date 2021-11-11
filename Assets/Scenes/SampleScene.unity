@@ -401,7 +401,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105477009}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d9706f13c7abf944a90d17cd940ad99, type: 3}
   m_Name: 
@@ -11235,6 +11235,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transformToFollow: {fileID: 1011229411}
   thisEnemy: {fileID: 432487027}
+  remainingActiveEnemies:
+  - {fileID: 118774179}
+  - {fileID: 2030033790}
+  target: {fileID: 0}
 --- !u!195 &432487029
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -11532,7 +11536,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487192294}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d9706f13c7abf944a90d17cd940ad99, type: 3}
   m_Name: 
@@ -18236,6 +18240,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transformToFollow: {fileID: 0}
   thisEnemy: {fileID: 1011229410}
+  remainingActiveEnemies:
+  - {fileID: 118774179}
+  - {fileID: 2030033790}
+  target: {fileID: 0}
 --- !u!195 &1011229416
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -19747,7 +19755,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1497276062}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d9706f13c7abf944a90d17cd940ad99, type: 3}
   m_Name: 
@@ -25523,6 +25531,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transformToFollow: {fileID: 285935529}
   thisEnemy: {fileID: 2030033790}
+  remainingActiveEnemies: []
+  target: {fileID: 0}
 --- !u!54 &2030033795
 Rigidbody:
   m_ObjectHideFlags: 0

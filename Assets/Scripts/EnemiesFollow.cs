@@ -9,6 +9,8 @@ public enum EnemyState
     CHASE
 }
 
+
+
 public class EnemiesFollow : MonoBehaviour
 {
     private EnemyState currentState;
@@ -21,6 +23,10 @@ public class EnemiesFollow : MonoBehaviour
 
     private bool beganSearching = false;
     List<GameObject> remainingActivePositions;
+
+    public GameObject[] remainingActiveEnemies;
+    public GameObject target;
+    private int nextState=0;
 
     // Start is called before the first frame update
     void Start()
@@ -35,15 +41,15 @@ public class EnemiesFollow : MonoBehaviour
     {
         if (currentState == EnemyState.PATROL)
         {
-            Patrol();
+            patrol();
         }
         if (currentState == EnemyState.CHASE)
         {
-            Chase();
+            chase();
         }
     }
 
-    void Patrol()
+    void patrol()
     {
         if (transformToFollow != null)
         {
@@ -94,11 +100,22 @@ public class EnemiesFollow : MonoBehaviour
         remainingActivePositions = activePositions;
     }
 
-    void Chase()
+    void chase()
     {
-
+        target = remainingActiveEnemies[nextState];
+        agent.SetDestination(target.transform.position);
+        if (Vector3.Distance(target.transform.position,transform.position) < 10f)
+        {
+            agent.isStopped = true;
+            animator.SetBool("isMoving", false);
+            shoot(); 
+        }
     }
 
+    void shoot()
+    {
+        //agent.isStopped = false;
+    }
 
 
     public void setTransformToFollow(Transform newTransform)
@@ -131,6 +148,5 @@ public class EnemiesFollow : MonoBehaviour
     {
         agent.isStopped = true;
     }
-
 
 }
