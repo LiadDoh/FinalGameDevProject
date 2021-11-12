@@ -11,15 +11,12 @@ public class DoorMotion : MonoBehaviour
     private bool doorIsOpen = true;
     NavMeshObstacle obstacle;
 
-    //private Collider[] colChildren;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         obstacle = GetComponent<NavMeshObstacle>();
-        //colChildren = gameObject.GetComponentsInChildren<Collider>();
-        // doorOpening = GetComponent<AudioSource>();
     }
 
     private IEnumerator OnTriggerEnter(Collider other)
@@ -32,21 +29,6 @@ public class DoorMotion : MonoBehaviour
             yield return new WaitForSeconds(1);
             setDoorMotion(true);
         }
-        /*if(other.tag.Equals("FirstEnemy") || other.tag.Equals("SecondEnemy"))
-        {
-            foreach (Collider collider in colChildren)
-            {
-                collider.enabled = false;
-            }
-            yield return new WaitForSeconds(1);
-            foreach (Collider collider in colChildren)
-            {
-                collider.enabled = true;
-            }
-            setDoorOpen(false);
-        }*/
-
-
     }
 
     private IEnumerator OnTriggerExit(Collider other)

@@ -24,7 +24,6 @@ public class SpawnGameObjects : MonoBehaviour
 
         spawnRiflePositions();
 
-
     }
 
     private void spawnRiflePositions()

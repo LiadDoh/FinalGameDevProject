@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-14232
+  m_Name: pb_Mesh-3716
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -684,7 +684,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &240047041
 GameObject:
@@ -5655,7 +5655,7 @@ Transform:
   - {fileID: 529824929}
   - {fileID: 1413556718}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &285935530
 Rigidbody:
@@ -11597,7 +11597,7 @@ Transform:
   - {fileID: 2069477842}
   - {fileID: 1422063223}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &529824928
 PrefabInstance:
@@ -16783,7 +16783,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-15068
+  m_Name: pb_Mesh-4552
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17037,7 +17037,7 @@ RectTransform:
   - {fileID: 1957308438}
   - {fileID: 1303281066}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -17691,7 +17691,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-14650
+  m_Name: pb_Mesh-4134
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18407,7 +18407,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-13396
+  m_Name: pb_Mesh-2880
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18992,7 +18992,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-13814
+  m_Name: pb_Mesh-3298
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19896,8 +19896,108 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1570899799
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1570899801}
+  - component: {fileID: 1570899800}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1570899800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570899799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b4c9c7765019a04a8c11d65a5c80381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: GunShot
+    clip: {fileID: 8300000, guid: 3061c7b9b32d894478e4126ccce25ca3, type: 3}
+    volume: 0.624
+    pitch: 2
+    source: {fileID: 0}
+    spatialBlend: 1
+    loop: 0
+  - name: Hit
+    clip: {fileID: 8300000, guid: a37f44cbf8c2a7443a3c361efa2f233a, type: 3}
+    volume: 0.624
+    pitch: 2
+    source: {fileID: 0}
+    spatialBlend: 1
+    loop: 0
+  - name: Theme
+    clip: {fileID: 8300000, guid: f14e8bfdac498dd4f82766090b48e582, type: 3}
+    volume: 0.058
+    pitch: 0.58
+    source: {fileID: 0}
+    spatialBlend: 1
+    loop: 1
+  - name: Throw
+    clip: {fileID: 8300000, guid: ac1cb04ab9cfeb74c8de45aa81c06351, type: 3}
+    volume: 0.635
+    pitch: 2
+    source: {fileID: 0}
+    spatialBlend: 1
+    loop: 0
+  - name: Grenade
+    clip: {fileID: 8300000, guid: d4aee29185389894b9cc0d8873904a49, type: 3}
+    volume: 0.852
+    pitch: 2
+    source: {fileID: 0}
+    spatialBlend: 1
+    loop: 0
+  - name: Walking
+    clip: {fileID: 8300000, guid: fc8da02e95435406f89db024451a0bb8, type: 3}
+    volume: 0.665
+    pitch: 2
+    source: {fileID: 0}
+    spatialBlend: 1
+    loop: 0
+  - name: Runing
+    clip: {fileID: 8300000, guid: fc8da02e95435406f89db024451a0bb8, type: 3}
+    volume: 0.665
+    pitch: 3
+    source: {fileID: 0}
+    spatialBlend: 1
+    loop: 0
+  - name: Jump
+    clip: {fileID: 8300000, guid: bc7ef992cb4fe49a7855e3b508a0584c, type: 3}
+    volume: 0.665
+    pitch: 2
+    source: {fileID: 0}
+    spatialBlend: 1
+    loop: 0
+--- !u!4 &1570899801
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570899799}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1597960380
 GameObject:
   m_ObjectHideFlags: 0
@@ -25413,7 +25513,7 @@ Transform:
   - {fileID: 2030033797}
   - {fileID: 1065100831}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1991769225
 MonoBehaviour:
@@ -27850,7 +27950,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8679260316188650482, guid: fdc5021212429aa48b1e4c2cf230e534, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8679260316188650482, guid: fdc5021212429aa48b1e4c2cf230e534, type: 3}
       propertyPath: m_LocalPosition.x

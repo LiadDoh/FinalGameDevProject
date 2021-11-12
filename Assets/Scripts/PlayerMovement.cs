@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(move * speed * Time.deltaTime);
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
+            FindObjectOfType<SoundController>().Play("Jump");
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
         velocity.y += gravity * Time.deltaTime;
@@ -56,22 +57,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl) && isGrounded)
         {
             speed = crouchSpeed;
-            controller.height = 0.5f;
+            controller.height = 0.3f;
         }
         else if (Input.GetKey(KeyCode.LeftShift) && isGrounded)
         {
             speed = runSpeed;
             controller.height = originalHeight;
-            // if (isGrounded && Input.GetAxis("Vertical") != 0 && (Math.Abs(temp.x - transform.position.x) + Math.Abs(temp.z - transform.position.z) > 0.1
-            //     || Math.Abs(temp.x - transform.position.x) + Math.Abs(temp.z - transform.position.z) < -0.1)) // Walking audio
-            // {
-            //     if (footStepSound.isPlaying == false)
-            //     {
-            //         footStepSound.Play();
-            //     }
-            // }
-            // else if (!(Input.GetAxis("Vertical") < 0)) // Stop walking audio
-            //     footStepSound.Stop();
         }
         else
         {

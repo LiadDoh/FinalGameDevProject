@@ -42,23 +42,10 @@ public class Gun : MonoBehaviour
     private void PlayerShoot()
     {
         muzzleFlash.Play();
+        FindObjectOfType<SoundController>().Play("GunShot");
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
-            // if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
-            // {
-
-            // Debug.Log(hit.transform.name);
             spawnAndDestroyBullet(hit);
-        // Target target = hit.transform.GetComponent<Target>();
-        // if (target != null)
-        // {
-        //     target.TakeDamage(damage);
-        // }
-        // if (hit.rigidbody != null)
-        // {
-        //     hit.rigidbody.AddForce(-hit.normal * impactForce);
-        // }
-        // }
     }
 
     public void NPCShoot()
@@ -69,37 +56,14 @@ public class Gun : MonoBehaviour
             return;
 
         muzzleFlash.Play();
+        FindObjectOfType<SoundController>().Play("GunShot");
         cooldownTimer = cooldown;
         RaycastHit hit;
         if (Physics.Raycast(transform.position, holder.transform.forward, out hit, range))
-            // {
             spawnAndDestroyBullet(hit);
-        //     Debug.Log(hit.transform.name);
-
-        // Target target = hit.transform.GetComponent<Target>();
-        // if (target != null)
-        // {
-        //     Debug.Log(target + " took damage");
-        //     target.TakeDamage(damage);
-        // }
-        // if (hit.rigidbody != null)
-        // {
-        //     hit.rigidbody.AddForce(-hit.normal * impactForce);
-        // }
-        // }
 
     }
 
-    // public void spawnAndDestroyBullet(RaycastHit hit)
-    // {
-    //     GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation);
-    //     newBullet.transform.position = hit.point;
-
-    //     if (newBullet != null)
-    //     {
-    //         Destroy(newBullet, 2);
-    //     }
-    // }
 
     public void spawnAndDestroyBullet(RaycastHit hit)
     {
@@ -117,11 +81,6 @@ public class Gun : MonoBehaviour
             Debug.Log(target + " took damage");
             target.TakeDamage(damage);
         }
-
-        // if (hit.rigidbody != null)
-        // {
-        //     hit.rigidbody.AddForce(-hit.normal * impactForce);
-        // }
 
         if (newBullet != null)
         {

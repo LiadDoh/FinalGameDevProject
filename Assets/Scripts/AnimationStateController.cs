@@ -33,7 +33,9 @@ public class AnimationStateController : MonoBehaviour
         {
             animator.SetBool("isWalking", true);
             if (Input.GetKey("left shift"))
+            {
                 animator.SetBool("isRunning", true);
+            }
             else
                 animator.SetBool("isRunning", false);
         }

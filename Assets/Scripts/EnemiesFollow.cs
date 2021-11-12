@@ -15,12 +15,6 @@ public class EnemiesFollow : MonoBehaviour
     private EnemyState currentState;
     //Transform that NPC has to follow
     public Transform transformToFollow = null;
-    // public float impactForce = 0.1f;
-    // public float fireRate = 15f;
-    // private float range = 10f;
-    // private float damage = 10f;
-    // private float nextTimeToFire = 0f;
-    //NavMesh Agent variable
     NavMeshAgent agent;
     public GameObject thisEnemy;
     Animator animator;

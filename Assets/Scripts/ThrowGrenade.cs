@@ -38,6 +38,7 @@ public class ThrowGrenade : MonoBehaviour
             Rigidbody rb = tempGrenade.GetComponent<Rigidbody>();
             rb.AddForce(x,y,z, ForceMode.Impulse);
             rb.useGravity = true;
+            FindObjectOfType<SoundController>().Play("Throw");
             StartCoroutine(Explode());
         }
     }
@@ -45,7 +46,7 @@ public class ThrowGrenade : MonoBehaviour
     IEnumerator Explode()
     {
         yield return new WaitForSeconds(2);
-        //tempGrenade.SetActive(false);
+        FindObjectOfType<SoundController>().Play("Grenade");
         explosion.transform.position = new Vector3(tempGrenade.transform.position.x, tempGrenade.transform.position.y + 4,
             tempGrenade.transform.position.z);
         Destroy(tempGrenade);
