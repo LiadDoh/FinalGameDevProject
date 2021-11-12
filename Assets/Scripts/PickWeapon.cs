@@ -8,6 +8,7 @@ public class PickWeapon : MonoBehaviour
     private GameObject playerObject;
     public GameObject firstEnemyObject;
     public GameObject SecondEnemyObject;
+    public GameObject friendlyNPCObject;
     private Transform cam;
 
     float distance;
@@ -67,8 +68,8 @@ public class PickWeapon : MonoBehaviour
             rifle4.SetActive(true);
             playerUIControl.setStateText("Careful now, the enemies got themselves some weapons!!");
             GetComponent<PickWeapon>().enabled = false;
-            firstEnemyObject.GetComponent<EnemiesFollow>().SetStateToChase(true);
-            SecondEnemyObject.GetComponent<EnemiesFollow>().SetStateToChase(true);
+            firstEnemyObject.GetComponent<EnemiesFollow>().SetStateToChase();
+            SecondEnemyObject.GetComponent<EnemiesFollow>().SetStateToChase();
             if (!rifle1.activeInHierarchy && !rifle2.activeInHierarchy && !playerUIControl.getObjectiveText().Equals(temp))
             {
                 playerUIControl.setObjectiveText(temp);
@@ -86,9 +87,10 @@ public class PickWeapon : MonoBehaviour
         {
             rifle1.SetActive(true);
             rifle2.SetActive(true);
-            cam.GetComponent<ThrowGrenade>().enabled = true;
+            cam.GetComponent<ThrowGrenade>().setCanExpload(true);
             cam.position = new Vector3(cam.transform.position.x, cam.transform.position.y, cam.transform.position.z + 0.3f);
             playerUIControl.setObjectiveText("You found a weapon!\nNow get to killing the enemy team!");
+            friendlyNPCObject.GetComponent<SC_NPCFollow>().SetStateToChase();
             // Debug.Log(firstEnemyObject.GetComponent<EnemiesFollow>().transformToFollow.name + "  VS  " + gameObject.transform.name);
             if (firstEnemyObject.GetComponent<EnemiesFollow>().transformToFollow == gameObject.transform)
             {

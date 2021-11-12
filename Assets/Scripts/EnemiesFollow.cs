@@ -12,6 +12,8 @@ public enum EnemyState
 public class EnemiesFollow : MonoBehaviour
 {
     private Gun gun;
+
+    private ThrowGrenade throwGrenade;
     private EnemyState currentState;
     //Transform that NPC has to follow
     public Transform transformToFollow = null;
@@ -25,6 +27,12 @@ public class EnemiesFollow : MonoBehaviour
     public GameObject[] remainingActiveEnemies;
     public GameObject target;
     private int nextState = 0;
+
+
+    private float cooldown = 1f;
+    private float cooldownTimer = 1f;
+
+    private int rifleToGrenadeRatio = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -104,17 +112,35 @@ public class EnemiesFollow : MonoBehaviour
         agent.SetDestination(target.transform.position);
         if (Vector3.Distance(target.transform.position, transform.position) < 20f)
         {
-            if (transform.tag.Equals("SecondEnemy"))
-                Debug.Log("Second Enemy has reached the player");
             agent.isStopped = true;
             animator.SetBool("isMoving", false);
             transform.LookAt(target.transform);
-            gun.NPCShoot();
+            attack();
         }
         else
         {
             agent.isStopped = false;
             animator.SetBool("isMoving", true);
+        }
+
+    }
+
+    private void attack()
+    {
+        cooldownTimer -= Time.deltaTime;
+
+        if (cooldownTimer > 0)
+            return;
+
+        cooldownTimer = cooldown;
+
+        if (Random.Range(0, rifleToGrenadeRatio) == rifleToGrenadeRatio - 1 && throwGrenade != null && throwGrenade.getCanExpload())
+        {
+            throwGrenade.throwGrenade();
+        }
+        else
+        {
+            gun.NPCShoot();
         }
 
     }
@@ -130,11 +156,13 @@ public class EnemiesFollow : MonoBehaviour
         return transformToFollow;
     }
 
-    public void SetStateToChase(bool boolValue)
+    public void SetStateToChase()
     {
         Debug.Log("Enemy" + gameObject.name + " is now chasing the player");
         currentState = EnemyState.CHASE;
         gun = gameObject.GetComponentInChildren<Gun>();
+        throwGrenade = gameObject.GetComponent<ThrowGrenade>();
+        throwGrenade.setCanExpload(true);
     }
 
     public string getState()

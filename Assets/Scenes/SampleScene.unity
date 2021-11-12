@@ -11348,6 +11348,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   isPlayer: 0
+--- !u!114 &432487036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432487027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3199cfb188d3c864d9296cfa9b0ad4e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grenade: {fileID: 1616553051}
+  explosion: {fileID: 1288451588}
+  delay: 3
+  radius: 5
+  explosionForce: 500000
+  damage: 100
 --- !u!1 &480828124
 GameObject:
   m_ObjectHideFlags: 0
@@ -18322,6 +18340,24 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &1011229420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011229410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3199cfb188d3c864d9296cfa9b0ad4e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grenade: {fileID: 1616553051}
+  explosion: {fileID: 1288451588}
+  delay: 3
+  radius: 5
+  explosionForce: 500000
+  damage: 100
 --- !u!1 &1049024940
 GameObject:
   m_ObjectHideFlags: 0
@@ -20305,6 +20341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstEnemyObject: {fileID: 1011229410}
   SecondEnemyObject: {fileID: 432487027}
+  friendlyNPCObject: {fileID: 2030033790}
   distanceAllowed: 2
   rifle1: {fileID: 1421624230}
   rifle2: {fileID: 105477009}
@@ -25642,7 +25679,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 4
+  m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -25736,8 +25773,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69dd15b92fe9cdc42bf0604369c2f0c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  run_Speed: 4
   navAgent: {fileID: 2030033793}
+  enemies:
+  - {fileID: 1011229410}
+  - {fileID: 432487027}
 --- !u!114 &2030033800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25752,6 +25791,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   isPlayer: 0
+--- !u!114 &2030033801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030033790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3199cfb188d3c864d9296cfa9b0ad4e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grenade: {fileID: 1616553051}
+  explosion: {fileID: 1288451588}
+  delay: 3
+  radius: 5
+  explosionForce: 500000
+  damage: 100
 --- !u!1 &2056197082
 GameObject:
   m_ObjectHideFlags: 0

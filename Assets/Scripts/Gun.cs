@@ -17,8 +17,6 @@ public class Gun : MonoBehaviour
 
     private float nextTimeToFire = 0f;
 
-    private float cooldown = 1f;
-    private float cooldownTimer = 1f;
 
     private float bulletForce = 5000f;
 
@@ -43,6 +41,7 @@ public class Gun : MonoBehaviour
     {
         muzzleFlash.Play();
         FindObjectOfType<SoundController>().Play("GunShot");
+
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
             spawnAndDestroyBullet(hit);
@@ -50,14 +49,9 @@ public class Gun : MonoBehaviour
 
     public void NPCShoot()
     {
-        cooldownTimer -= Time.deltaTime;
-
-        if (cooldownTimer > 0)
-            return;
-
         muzzleFlash.Play();
         FindObjectOfType<SoundController>().Play("GunShot");
-        cooldownTimer = cooldown;
+
         RaycastHit hit;
         if (Physics.Raycast(transform.position, holder.transform.forward, out hit, range))
             spawnAndDestroyBullet(hit);

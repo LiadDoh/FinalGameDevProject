@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
     private float originalHeight;
 
+    private ThrowGrenade throwGrenade;
+
     private AudioSource footStepSound;
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         cam = Camera.main;
         originalHeight = controller.height;
         footStepSound = GetComponent<AudioSource>();
+        throwGrenade = cam.GetComponent<ThrowGrenade>();
     }
 
     // Update is called once per frame
@@ -68,6 +71,13 @@ public class PlayerMovement : MonoBehaviour
         {
             speed = walkSpeed;
             controller.height = originalHeight;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q) && throwGrenade.getCanExpload())
+        {
+
+            throwGrenade.throwGrenade();
+
         }
 
     }

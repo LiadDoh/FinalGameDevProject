@@ -79,4 +79,9 @@ public class Target : MonoBehaviour
 
         }
     }
+
+    public bool isAlive()
+    {
+        return health > 0;
+    }
 }
