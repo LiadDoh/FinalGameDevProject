@@ -8,6 +8,7 @@ TagManager:
   - SecondEnemy
   - NPC
   - Gun
+  - Game
   layers:
   - Default
   - TransparentFX

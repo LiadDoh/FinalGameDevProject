@@ -9,7 +9,7 @@ public class ThrowGrenade : MonoBehaviour
     public float delay = 3f;
     public float radius = 5;
     // public float explosionForce = 500000f;
-    public float damage = 50f;
+    public float damage = 40f;
 
     private bool canExpload = false;
 

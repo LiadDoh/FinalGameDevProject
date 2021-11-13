@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-3716
+  m_Name: pb_Mesh-70760
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5655,7 +5655,7 @@ Transform:
   - {fileID: 529824929}
   - {fileID: 1413556718}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &285935530
 Rigidbody:
@@ -11156,6 +11156,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332037288}
   m_CullTransparentMesh: 1
+--- !u!1 &347671442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 347671444}
+  - component: {fileID: 347671443}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &347671443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347671442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c31c99b705e85ab4385fe1b1ef199ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WinningPanel: {fileID: 1957308437}
+  LosingPanel: {fileID: 1303281065}
+  game: {fileID: 1991769223}
+--- !u!4 &347671444
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347671442}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -18.837908, y: 5.865962, z: 9.443167}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &432487026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11241,7 +11287,7 @@ MonoBehaviour:
   transformToFollow: {fileID: 1011229411}
   thisEnemy: {fileID: 432487027}
   remainingActiveEnemies:
-  - {fileID: 118774179}
+  - {fileID: 285935526}
   - {fileID: 2030033790}
   target: {fileID: 0}
 --- !u!195 &432487029
@@ -11364,8 +11410,7 @@ MonoBehaviour:
   explosion: {fileID: 1288451588}
   delay: 3
   radius: 5
-  explosionForce: 500000
-  damage: 100
+  damage: 40
 --- !u!1 &480828124
 GameObject:
   m_ObjectHideFlags: 0
@@ -11615,7 +11660,7 @@ Transform:
   - {fileID: 2069477842}
   - {fileID: 1422063223}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &529824928
 PrefabInstance:
@@ -11837,7 +11882,6 @@ MonoBehaviour:
   explosion: {fileID: 1288451588}
   delay: 3
   radius: 5
-  explosionForce: 100
   damage: 50
 --- !u!1 &615618527
 GameObject:
@@ -16801,7 +16845,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-4552
+  m_Name: pb_Mesh-71596
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17709,7 +17753,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-4134
+  m_Name: pb_Mesh-71178
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18273,7 +18317,7 @@ MonoBehaviour:
   transformToFollow: {fileID: 0}
   thisEnemy: {fileID: 1011229410}
   remainingActiveEnemies:
-  - {fileID: 118774179}
+  - {fileID: 285935526}
   - {fileID: 2030033790}
   target: {fileID: 0}
 --- !u!195 &1011229416
@@ -18356,8 +18400,7 @@ MonoBehaviour:
   explosion: {fileID: 1288451588}
   delay: 3
   radius: 5
-  explosionForce: 500000
-  damage: 100
+  damage: 40
 --- !u!1 &1049024940
 GameObject:
   m_ObjectHideFlags: 0
@@ -18443,7 +18486,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2880
+  m_Name: pb_Mesh-69924
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19028,7 +19071,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-3298
+  m_Name: pb_Mesh-70342
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -25527,7 +25570,7 @@ GameObject:
   - component: {fileID: 1991769225}
   m_Layer: 0
   m_Name: Game
-  m_TagString: Untagged
+  m_TagString: Game
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25807,8 +25850,7 @@ MonoBehaviour:
   explosion: {fileID: 1288451588}
   delay: 3
   radius: 5
-  explosionForce: 500000
-  damage: 100
+  damage: 40
 --- !u!1 &2056197082
 GameObject:
   m_ObjectHideFlags: 0

@@ -113,12 +113,21 @@ public class EnemiesFollow : MonoBehaviour
         bool isNotCloseToEnemies = true;
         foreach (GameObject enemy in remainingActiveEnemies)
         {
-            if (Vector3.Distance(enemy.transform.position, transform.position) < 20f)
+            GameObject tempEnemy = enemy;
+            if (tempEnemy.tag.Equals("Player"))
+            {
+                tempEnemy = enemy.transform.Find("remy").gameObject;
+            }
+            Target temp = enemy.GetComponent<Target>();
+            bool isEnemyAlive = temp.isAlive();
+
+            if (Vector3.Distance(tempEnemy.transform.position, transform.position) < 20f && isEnemyAlive)
             {
                 agent.isStopped = true;
                 animator.SetBool("isMoving", false);
-                transform.LookAt(enemy.transform);
+                transform.LookAt(tempEnemy.transform);
                 attack();
+                isNotCloseToEnemies = false;
                 break;
             }
 

@@ -14,9 +14,12 @@ public class Target : MonoBehaviour
 
     private SC_NPCFollow selfNPCFollow = null;
 
+    private GameResult gameResult = null;
+
     //private AnimationStateController animationStateController = null;
     void Start()
     {
+        gameResult = GameObject.FindObjectOfType<GameResult>();
         if (isPlayer)
         {
             playerUIControl = GetComponent<PlayerUIControl>();
@@ -51,6 +54,7 @@ public class Target : MonoBehaviour
         Debug.Log(gameObject.name + " has died");
         if (isPlayer)
         {
+            gameResult.setGameOverFlag();
             //animationStateController = GameObject.FindGameObjectWithTag("remy").GetComponent<AnimationStateController>();
             //animationStateController.dead();
         }
@@ -67,6 +71,7 @@ public class Target : MonoBehaviour
                 selfEnemiesFollow.stopAgent();
                 selfEnemiesFollow.enabled = false;
                 Debug.Log("Enemy ded");
+                gameResult.addEnemyCount();
             }
             else if (selfNPCFollow != null)
             {
@@ -76,6 +81,7 @@ public class Target : MonoBehaviour
             }
 
             gameObject.GetComponent<Animator>().SetBool("isDead", true);
+            this.enabled = false;
 
         }
     }

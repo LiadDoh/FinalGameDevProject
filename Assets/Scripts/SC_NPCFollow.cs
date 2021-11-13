@@ -75,7 +75,11 @@ public class SC_NPCFollow : MonoBehaviour
         bool isNotCloseToEnemies = true;
         foreach (GameObject enemy in enemies)
         {
-            if (Vector3.Distance(enemy.transform.position, transform.position) < 20f && enemy.GetComponent<Target>().isAlive())
+
+            Target temp = enemy.GetComponent<Target>();
+            bool isEnemyAlive = temp.isAlive();
+
+            if (Vector3.Distance(enemy.transform.position, transform.position) < 20f && enemy.GetComponent<Target>().isAlive() && isEnemyAlive)
             {
                 navAgent.isStopped = true;
                 animator.SetBool("isMoving", false);
