@@ -88,7 +88,7 @@ public class PickWeapon : MonoBehaviour
             rifle1.SetActive(true);
             rifle2.SetActive(true);
             cam.GetComponent<ThrowGrenade>().setCanExpload(true);
-            cam.position = new Vector3(cam.transform.position.x, cam.transform.position.y, cam.transform.position.z + 0.3f);
+            // cam.position = new Vector3(cam.transform.position.x, cam.transform.position.y, cam.transform.position.z + 0.3f);
             playerUIControl.setObjectiveText("You found a weapon!\nNow get to killing the enemy team!");
             friendlyNPCObject.GetComponent<SC_NPCFollow>().SetStateToChase();
             // Debug.Log(firstEnemyObject.GetComponent<EnemiesFollow>().transformToFollow.name + "  VS  " + gameObject.transform.name);

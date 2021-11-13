@@ -110,19 +110,24 @@ public class EnemiesFollow : MonoBehaviour
     {
         target = remainingActiveEnemies[nextState];
         agent.SetDestination(target.transform.position);
-        if (Vector3.Distance(target.transform.position, transform.position) < 20f)
+        bool isNotCloseToEnemies = true;
+        foreach (GameObject enemy in remainingActiveEnemies)
         {
-            agent.isStopped = true;
-            animator.SetBool("isMoving", false);
-            transform.LookAt(target.transform);
-            attack();
+            if (Vector3.Distance(enemy.transform.position, transform.position) < 20f)
+            {
+                agent.isStopped = true;
+                animator.SetBool("isMoving", false);
+                transform.LookAt(enemy.transform);
+                attack();
+                break;
+            }
+
         }
-        else
+        if (isNotCloseToEnemies)
         {
             agent.isStopped = false;
             animator.SetBool("isMoving", true);
         }
-
     }
 
     private void attack()

@@ -82,6 +82,7 @@ public class SC_NPCFollow : MonoBehaviour
                 transform.LookAt(enemy.transform);
                 attack();
                 isNotCloseToEnemies = false;
+                break;
             }
         }
         if (isNotCloseToEnemies)
