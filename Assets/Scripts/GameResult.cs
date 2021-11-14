@@ -14,6 +14,9 @@ public class GameResult : MonoBehaviour
 
     private PlayerUIControl playerUIControl;
 
+    private float timeToAppear = 4f;
+    private float timeWhenDone;
+
     void Start()
     {
         playerUIControl = GameObject.FindObjectOfType<PlayerUIControl>();
@@ -21,6 +24,19 @@ public class GameResult : MonoBehaviour
         WinningPanel.SetActive(false);
     }
     // Update is called once per frame
+
+    void Update()
+    {
+        if ((isGameOver || enemyDeadCount > 1) && (Time.time >= timeWhenDone))
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+         Application.Quit();
+#endif
+        }
+    }
+
 
     private void setGameOver()
     {
@@ -31,6 +47,9 @@ public class GameResult : MonoBehaviour
         LosingPanel.SetActive(true);
 
         game.SetActive(false);
+
+        timeWhenDone = Time.time + timeToAppear;
+
 
     }
 
@@ -43,6 +62,8 @@ public class GameResult : MonoBehaviour
         WinningPanel.SetActive(true);
 
         game.SetActive(false);
+
+        timeWhenDone = Time.time + timeToAppear;
 
     }
 

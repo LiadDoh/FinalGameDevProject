@@ -20,11 +20,11 @@ public class Target : MonoBehaviour
     void Start()
     {
         gameResult = GameObject.FindObjectOfType<GameResult>();
-        if (isPlayer)
-        {
-            playerUIControl = GetComponent<PlayerUIControl>();
-        }
-        else if (gameObject.tag.Equals("FirstEnemy") || gameObject.tag.Equals("SecondEnemy"))
+        // if (isPlayer)
+        // {
+        playerUIControl = GameObject.FindObjectOfType<PlayerUIControl>();
+        // }
+        if (gameObject.tag.Equals("FirstEnemy") || gameObject.tag.Equals("SecondEnemy"))
         {
             // Debug.Log("EnemiesFollow " + gameObject.tag);
             if (gameObject.tag.Equals("FirstEnemy"))
@@ -41,7 +41,7 @@ public class Target : MonoBehaviour
     {
         FindObjectOfType<SoundController>().Play("Hit");
         health -= amount;
-        if (playerUIControl != null)
+        if (isPlayer && playerUIControl != null)
         {
             playerUIControl.UpdateHealth(health);
         }
@@ -71,12 +71,14 @@ public class Target : MonoBehaviour
                 selfEnemiesFollow.enabled = false;
                 Debug.Log("Enemy ded");
                 gameResult.addEnemyCount();
+                playerUIControl.setStateText("Enemy" + gameObject.name + " has died!");
             }
             else if (selfNPCFollow != null)
             {
                 selfNPCFollow.stopAgent();
                 selfNPCFollow.enabled = false;
                 Debug.Log("NPC ded");
+                playerUIControl.setStateText("FriendlyNPC has died!");
             }
 
             gameObject.GetComponent<Animator>().SetBool("isDead", true);

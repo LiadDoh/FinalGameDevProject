@@ -30,6 +30,8 @@ public class SC_NPCFollow : MonoBehaviour
 
     private int rifleToGrenadeRatio = 5;
 
+    public float range = 50f;
+
 
     void Start()
     {
@@ -79,11 +81,15 @@ public class SC_NPCFollow : MonoBehaviour
             Target temp = enemy.GetComponent<Target>();
             bool isEnemyAlive = temp.isAlive();
 
-            if (Vector3.Distance(enemy.transform.position, transform.position) < 20f && enemy.GetComponent<Target>().isAlive() && isEnemyAlive)
+            Vector3 rayDirection = enemy.transform.position - transform.position;
+
+            NavMeshHit hit;
+            if (Vector3.Distance(enemy.transform.position, transform.position) < 20f && isEnemyAlive
+            && (!navAgent.Raycast(enemy.transform.position, out hit) || Vector3.Distance(enemy.transform.position, transform.position) < 7f))
             {
+                transform.LookAt(enemy.transform);
                 navAgent.isStopped = true;
                 animator.SetBool("isMoving", false);
-                transform.LookAt(enemy.transform);
                 attack();
                 isNotCloseToEnemies = false;
                 break;
@@ -118,7 +124,8 @@ public class SC_NPCFollow : MonoBehaviour
 
     public void stopAgent()
     {
-        navAgent.isStopped = true;
+        if (navAgent != null)
+            navAgent.isStopped = true;
     }
 
     public void SetStateToChase()

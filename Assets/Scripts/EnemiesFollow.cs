@@ -32,6 +32,8 @@ public class EnemiesFollow : MonoBehaviour
     private float cooldown = 1f;
     private float cooldownTimer = 1f;
 
+    public float range = 200f;
+
     private int rifleToGrenadeRatio = 5;
 
     // Start is called before the first frame update
@@ -121,11 +123,13 @@ public class EnemiesFollow : MonoBehaviour
             Target temp = enemy.GetComponent<Target>();
             bool isEnemyAlive = temp.isAlive();
 
-            if (Vector3.Distance(tempEnemy.transform.position, transform.position) < 20f && isEnemyAlive)
+            NavMeshHit hit;
+            if (Vector3.Distance(tempEnemy.transform.position, transform.position) < 20f && isEnemyAlive
+            && (!agent.Raycast(tempEnemy.transform.position, out hit) && Vector3.Distance(tempEnemy.transform.position, transform.position) < 7f))
             {
+                transform.LookAt(tempEnemy.transform);
                 agent.isStopped = true;
                 animator.SetBool("isMoving", false);
-                transform.LookAt(tempEnemy.transform);
                 attack();
                 isNotCloseToEnemies = false;
                 break;
@@ -187,12 +191,14 @@ public class EnemiesFollow : MonoBehaviour
 
     public void setAgentStoppingDistance(float d)
     {
-        agent.stoppingDistance = d;
+        if (agent != null)
+            agent.stoppingDistance = d;
     }
 
     public void stopAgent()
     {
-        agent.isStopped = true;
+        if (agent != null)
+            agent.isStopped = true;
     }
 
 }
