@@ -57,29 +57,12 @@ public class DoorMotion : MonoBehaviour
             obstacle.enabled = !isOpen;
         }
         animator.SetBool("Open", isOpen);
-        if (door.tag == "Door")
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
         {
             AudioSource.PlayClipAtPoint(aSource.clip, door.transform.position);
         }
-        if (door.tag == "SlidingDoor")
-        {
-            if (!aSource.isPlaying)
-            {
-                PlayForTime(0.5f);
-            }
-        }
         time = Time.time;
         doorIsOpen = isOpen;
-    }
 
-    public void PlayForTime(float time)
-    {
-        AudioSource.PlayClipAtPoint(aSource.clip, door.transform.position);
-        Invoke("StopAudio", time);
-    }
-
-    private void StopAudio()
-    {
-        aSource.Stop();
     }
 }
