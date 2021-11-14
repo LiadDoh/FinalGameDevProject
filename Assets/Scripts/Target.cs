@@ -39,6 +39,7 @@ public class Target : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
+        FindObjectOfType<SoundController>().Play("Hit");
         health -= amount;
         if (playerUIControl != null)
         {
@@ -55,8 +56,6 @@ public class Target : MonoBehaviour
         if (isPlayer)
         {
             gameResult.setGameOverFlag();
-            //animationStateController = GameObject.FindGameObjectWithTag("remy").GetComponent<AnimationStateController>();
-            //animationStateController.dead();
         }
         else if (gameObject != null)
         {

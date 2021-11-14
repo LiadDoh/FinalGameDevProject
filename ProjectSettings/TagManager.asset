@@ -9,6 +9,8 @@ TagManager:
   - NPC
   - Gun
   - Game
+  - Door
+  - SlidingDoor
   layers:
   - Default
   - TransparentFX

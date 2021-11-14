@@ -6,6 +6,7 @@ public class QuitGame : MonoBehaviour
 {
     public void OnQuitPressed()
     {
+        FindObjectOfType<SoundController>().Play("Play");
         Debug.Log("Quitting Game...");
         Application.Quit();
     }

@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-70760
+  m_Name: pb_Mesh-3738
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16845,7 +16845,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-71596
+  m_Name: pb_Mesh-4574
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17753,7 +17753,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-71178
+  m_Name: pb_Mesh-4156
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17941,6 +17941,11 @@ Transform:
   m_Father: {fileID: 515153642}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &858730894 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 41558968374411618, guid: fdc5021212429aa48b1e4c2cf230e534, type: 3}
+  m_PrefabInstance: {fileID: 8679260316426855611}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &874532082
 GameObject:
   m_ObjectHideFlags: 0
@@ -18032,6 +18037,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: QuitGame, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -18486,7 +18503,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-69924
+  m_Name: pb_Mesh-2902
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19071,7 +19088,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-70342
+  m_Name: pb_Mesh-3320
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19478,6 +19495,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1415681049}
+        m_TargetAssemblyTypeName: StartGameUI, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Play
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1415681047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19525,7 +19554,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1415681044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cff2bb04609eb6548bfb2439e4a67fca, type: 3}
+  m_Script: {fileID: 11500000, guid: a3b7c5deb2034794584727918f5f2fd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1420394058
@@ -20042,22 +20071,22 @@ MonoBehaviour:
     source: {fileID: 0}
     spatialBlend: 1
     loop: 0
-  - name: Walking
-    clip: {fileID: 8300000, guid: fc8da02e95435406f89db024451a0bb8, type: 3}
+  - name: Jump
+    clip: {fileID: 8300000, guid: bc7ef992cb4fe49a7855e3b508a0584c, type: 3}
     volume: 0.665
     pitch: 2
     source: {fileID: 0}
     spatialBlend: 1
     loop: 0
-  - name: Runing
-    clip: {fileID: 8300000, guid: fc8da02e95435406f89db024451a0bb8, type: 3}
+  - name: Play
+    clip: {fileID: 8300000, guid: f8cab9ed881c12249b7c8b4795964bdd, type: 3}
     volume: 0.665
-    pitch: 3
+    pitch: 2
     source: {fileID: 0}
     spatialBlend: 1
     loop: 0
-  - name: Jump
-    clip: {fileID: 8300000, guid: bc7ef992cb4fe49a7855e3b508a0584c, type: 3}
+  - name: Door Open
+    clip: {fileID: 8300000, guid: adfb477aa2d8f44f1a8f3ffc61b6ccd5, type: 3}
     volume: 0.665
     pitch: 2
     source: {fileID: 0}
@@ -25923,6 +25952,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 41558968374411618, guid: fdc5021212429aa48b1e4c2cf230e534, type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
     - target: {fileID: 669393573819586341, guid: fdc5021212429aa48b1e4c2cf230e534, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 40
@@ -25967,6 +26000,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 53797520}
+    - target: {fileID: 5339488094099302471, guid: fdc5021212429aa48b1e4c2cf230e534, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 858730894}
     - target: {fileID: 5356346294090562949, guid: fdc5021212429aa48b1e4c2cf230e534, type: 3}
       propertyPath: m_Mesh
       value: 

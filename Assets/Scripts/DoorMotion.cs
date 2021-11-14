@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class DoorMotion : MonoBehaviour
 {
+    public GameObject door;
     private Animator animator;
    // private AudioSource doorOpening;
     private float time = 0;
@@ -54,6 +55,16 @@ public class DoorMotion : MonoBehaviour
             obstacle.enabled = !isOpen;
         }
         animator.SetBool("Open", isOpen);
+        if(door.tag == "Door")
+        {
+            AudioSource.PlayClipAtPoint(door.GetComponent<AudioSource>().clip, door.transform.position);
+        }
+        if(door.tag == "SlidingDoor")
+        {
+            AudioSource source = door.GetComponent<AudioSource>();
+            source.timeSamples = (int)(source.clip.length * 0.5f);
+            AudioSource.PlayClipAtPoint(door.GetComponent<AudioSource>().clip, door.transform.position);
+        }
       //  doorOpening.PlayDelayed(0.5f);
         time = Time.time;
         doorIsOpen = isOpen;
