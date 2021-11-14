@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     private float walkSpeed = 5f;
     private float crouchSpeed = 3f;
-    private float runSpeed = 15f;
+    private float runSpeed = 7f;
     public float gravity = -9.81f;
     public Transform groundCheck;
     public float groundDistance = 0.4f;

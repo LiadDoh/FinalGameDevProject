@@ -8,6 +8,7 @@ public class ThrowGrenade : MonoBehaviour
 
     public float delay = 3f;
     public float radius = 5;
+    // public float explosionForce = 500000f;
     public float damage = 40f;
 
     private bool canExpload = false;
@@ -61,7 +62,7 @@ public class ThrowGrenade : MonoBehaviour
 
         tempExplosion.SetActive(true);
         yield return new WaitForSeconds(1);
-        tempExplosion.SetActive(false);
+        Destroy(tempExplosion);
         canExpload = true;
     }
 
