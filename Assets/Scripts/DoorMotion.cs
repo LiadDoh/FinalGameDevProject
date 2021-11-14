@@ -7,17 +7,18 @@ public class DoorMotion : MonoBehaviour
 {
     public GameObject door;
     private Animator animator;
-   // private AudioSource doorOpening;
+    // private AudioSource doorOpening;
     private float time = 0;
     private bool doorIsOpen = true;
     NavMeshObstacle obstacle;
 
-
+    AudioSource aSource;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         obstacle = GetComponent<NavMeshObstacle>();
+        aSource = door.GetComponent<AudioSource>();
     }
 
     private IEnumerator OnTriggerEnter(Collider other)
@@ -25,7 +26,8 @@ public class DoorMotion : MonoBehaviour
         if (Time.time - time > 1 || time == 0)
         {
             setDoorMotion(true);
-        } else
+        }
+        else
         {
             yield return new WaitForSeconds(1);
             setDoorMotion(true);
@@ -55,18 +57,29 @@ public class DoorMotion : MonoBehaviour
             obstacle.enabled = !isOpen;
         }
         animator.SetBool("Open", isOpen);
-        if(door.tag == "Door")
+        if (door.tag == "Door")
         {
-            AudioSource.PlayClipAtPoint(door.GetComponent<AudioSource>().clip, door.transform.position);
+            AudioSource.PlayClipAtPoint(aSource.clip, door.transform.position);
         }
-        if(door.tag == "SlidingDoor")
+        if (door.tag == "SlidingDoor")
         {
-            AudioSource source = door.GetComponent<AudioSource>();
-            source.timeSamples = (int)(source.clip.length * 0.5f);
-            AudioSource.PlayClipAtPoint(door.GetComponent<AudioSource>().clip, door.transform.position);
+            if (!aSource.isPlaying)
+            {
+                PlayForTime(0.5f);
+            }
         }
-      //  doorOpening.PlayDelayed(0.5f);
         time = Time.time;
         doorIsOpen = isOpen;
+    }
+
+    public void PlayForTime(float time)
+    {
+        AudioSource.PlayClipAtPoint(aSource.clip, door.transform.position);
+        Invoke("StopAudio", time);
+    }
+
+    private void StopAudio()
+    {
+        aSource.Stop();
     }
 }
