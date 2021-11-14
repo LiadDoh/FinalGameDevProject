@@ -42,8 +42,6 @@ public class GameResult : MonoBehaviour
     {
         playerUIControl.enabled = false;
 
-        // yield return new WaitForSeconds(3);
-
         LosingPanel.SetActive(true);
 
         game.SetActive(false);
@@ -56,8 +54,6 @@ public class GameResult : MonoBehaviour
     private void setWin()
     {
         playerUIControl.enabled = false;
-
-        // yield return new WaitForSeconds(3);
 
         WinningPanel.SetActive(true);
 

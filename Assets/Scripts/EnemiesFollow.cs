@@ -125,7 +125,7 @@ public class EnemiesFollow : MonoBehaviour
 
             NavMeshHit hit;
             if (Vector3.Distance(tempEnemy.transform.position, transform.position) < 20f && isEnemyAlive
-            && (!agent.Raycast(tempEnemy.transform.position, out hit) && Vector3.Distance(tempEnemy.transform.position, transform.position) < 7f))
+            && (!agent.Raycast(tempEnemy.transform.position, out hit) && Vector3.Distance(tempEnemy.transform.position, transform.position) < 10f))
             {
                 transform.LookAt(tempEnemy.transform);
                 agent.isStopped = true;

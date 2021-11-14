@@ -8,7 +8,6 @@ public class ThrowGrenade : MonoBehaviour
 
     public float delay = 3f;
     public float radius = 5;
-    // public float explosionForce = 500000f;
     public float damage = 40f;
 
     private bool canExpload = false;
@@ -50,7 +49,6 @@ public class ThrowGrenade : MonoBehaviour
             Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                // rb.AddExplosionForce(explosionForce, tempGrenade.transform.position, radius);
                 Target target = nearbyObject.transform.GetComponent<Target>();
                 if (target != null)
                 {

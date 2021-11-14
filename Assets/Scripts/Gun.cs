@@ -62,7 +62,6 @@ public class Gun : MonoBehaviour
     public void spawnAndDestroyBullet(RaycastHit hit)
     {
         GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation);
-        // newBullet.transform.position = hit.point;
         Rigidbody tempRigidBodyBullet = newBullet.GetComponent<Rigidbody>();
         tempRigidBodyBullet.AddForce(tempRigidBodyBullet.transform.forward * bulletForce);
 

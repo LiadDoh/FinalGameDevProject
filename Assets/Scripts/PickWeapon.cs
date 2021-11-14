@@ -24,7 +24,6 @@ public class PickWeapon : MonoBehaviour
     string temp;
     bool wasPlayerClose = false;
     private RaycastHit hit;
-    //bool hasPickedUp = false;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +42,6 @@ public class PickWeapon : MonoBehaviour
     {
         Physics.Raycast(cam.position, cam.forward, out hit);
 
-        //distance = Vector3.Distance(transform.position, playerObject.transform.position);
         if (hit.transform != null && hit.transform.gameObject != null && hit.transform.gameObject == gameObject && hit.distance < distanceAllowed
             && !rifle1.activeInHierarchy && !rifle2.activeInHierarchy)
         {
@@ -88,10 +86,8 @@ public class PickWeapon : MonoBehaviour
             rifle1.SetActive(true);
             rifle2.SetActive(true);
             cam.GetComponent<ThrowGrenade>().setCanExpload(true);
-            // cam.position = new Vector3(cam.transform.position.x, cam.transform.position.y, cam.transform.position.z + 0.3f);
             playerUIControl.setObjectiveText("You found a weapon!\nNow get to killing the enemy team!");
             friendlyNPCObject.GetComponent<SC_NPCFollow>().SetStateToChase();
-            // Debug.Log(firstEnemyObject.GetComponent<EnemiesFollow>().transformToFollow.name + "  VS  " + gameObject.transform.name);
             if (firstEnemyObject.GetComponent<EnemiesFollow>().transformToFollow == gameObject.transform)
             {
                 Debug.Log("Yese");

@@ -11290,6 +11290,7 @@ MonoBehaviour:
   - {fileID: 285935526}
   - {fileID: 2030033790}
   target: {fileID: 0}
+  range: 50
 --- !u!195 &432487029
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -18337,6 +18338,7 @@ MonoBehaviour:
   - {fileID: 285935526}
   - {fileID: 2030033790}
   target: {fileID: 0}
+  range: 50
 --- !u!195 &1011229416
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -19057,7 +19059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -25501,7 +25503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -25779,6 +25781,7 @@ MonoBehaviour:
   thisEnemy: {fileID: 2030033790}
   remainingActiveEnemies: []
   target: {fileID: 0}
+  range: 50
 --- !u!54 &2030033795
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -25849,6 +25852,7 @@ MonoBehaviour:
   enemies:
   - {fileID: 1011229410}
   - {fileID: 432487027}
+  range: 50
 --- !u!114 &2030033800
 MonoBehaviour:
   m_ObjectHideFlags: 0

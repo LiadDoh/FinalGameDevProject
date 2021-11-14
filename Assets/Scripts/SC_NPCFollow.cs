@@ -77,7 +77,6 @@ public class SC_NPCFollow : MonoBehaviour
         bool isNotCloseToEnemies = true;
         foreach (GameObject enemy in enemies)
         {
-
             Target temp = enemy.GetComponent<Target>();
             bool isEnemyAlive = temp.isAlive();
 
